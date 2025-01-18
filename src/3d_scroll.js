@@ -8,11 +8,33 @@ const scrollStep = 60;
 
 let contentWidth = document.body.clientWidth;
 let contentHeight = getContentHeight();
+
 let scrollOffset = 0;
+let touchStartY = 0;
+let touchLastY = 0;
 
 scrollWrapper.addEventListener("wheel", (event) => {
   event.preventDefault();
-  handleScroll(event.deltaY);
+  handleScroll(event.deltaY, scrollStep);
+});
+
+scrollWrapper.addEventListener("touchstart", (event) => {
+  touchStartY = touchLastY = event.touches[0].clientY;
+});
+
+scrollWrapper.addEventListener("touchmove", (event) => {
+  event.preventDefault();
+  const touchCurrentY = event.touches[0].clientY;
+  const deltaY = touchLastY - touchCurrentY;
+  touchLastY = touchCurrentY;
+  if (Math.abs(deltaY) > 1) {
+    handleScroll(deltaY, scrollStep / 2);
+  }
+});
+
+scrollWrapper.addEventListener("touchend", () => {
+  touchStartY = 0;
+  touchLastY = 0;
 });
 
 window.addEventListener("resize", () => {
@@ -21,7 +43,7 @@ window.addEventListener("resize", () => {
 
   contentWidth = document.body.clientWidth;
   contentHeight = getContentHeight();
-  handleScroll(0);
+  handleScroll(0, scrollStep);
 });
 
 function getContentHeight() {
@@ -41,13 +63,13 @@ function getContentHeight() {
   return naturalHeight;
 }
 
-function handleScroll(deltaY) {
+function handleScroll(deltaY, sensitivity) {
   // Since the page does not naturally scroll, we handle mousewheel events programatically
 
   if (deltaY > 0) {
-    scrollOffset = Math.min(scrollOffset + scrollStep, contentHeight);
+    scrollOffset = Math.min(scrollOffset + sensitivity, contentHeight);
   } else {
-    scrollOffset = Math.max(scrollOffset - scrollStep, 0);
+    scrollOffset = Math.max(scrollOffset - sensitivity, 0);
   }
 
   // Distance in px for the content to travel down the page
