@@ -1,7 +1,21 @@
+html {
+  scroll-behavior: smooth;
+}
+
 body {
   width: 100vw;
   height: 100vh;
+  overflow: hidden;
+  margin: 0;
   background: #000;
+  background-image: url("./background.png");
+  background-size: cover;
+  background-position-x: center;
+  background-position-y: 0;
+}
+
+iframe {
+  pointer-events: all;
   overflow: hidden;
 }
 
@@ -10,6 +24,8 @@ body {
   overflow-x: hidden;
   height: 100vh;
   position: relative;
+  background-color: rgba(0, 0, 0, 100);
+  clip-path: inset(0 0 0 0);
 }
 
 .fade {
@@ -44,8 +60,4 @@ body {
   top: 100vh;
   transform-origin: 50vw 15vh;
   transform: rotateX(45deg);
-}
-
-html {
-  scroll-behavior: smooth;
 }

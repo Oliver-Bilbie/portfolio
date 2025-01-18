@@ -4,9 +4,16 @@ const starWars = document.querySelector(".star-wars");
 
 const perspective = 800;
 const rotateX = 45;
-const scrollStep = 60;
 
-let contentWidth = document.body.clientWidth;
+let scrollStep = 60;
+if (navigator.userAgent.includes("Firefox")) {
+  // Firefox needs to scroll slower than other browsers for equivalent behavior
+  scrollStep = 20;
+}
+
+let clientWidth = document.body.clientWidth;
+let clientHeight = document.body.clientHeight;
+formatIFrames();
 let contentHeight = getContentHeight();
 
 let scrollOffset = 0;
@@ -41,7 +48,9 @@ window.addEventListener("resize", () => {
   // When the window is resized we re-evaluate the content height since this will change.
   // If the position that has been scrolled to is now out-of-bounds, we bring it back in.
 
-  contentWidth = document.body.clientWidth;
+  console.log("Resizing...");
+  clientWidth = document.body.clientWidth;
+  formatIFrames();
   contentHeight = getContentHeight();
   handleScroll(0, scrollStep);
 });
@@ -83,4 +92,31 @@ function handleScroll(deltaY, sensitivity) {
 
   crawl.style.transform = `rotateX(${rotateX}deg) translateZ(${translateZ}px) translateY(${translateY}px)`;
   crawl.style.top = `${top}vh`;
+
+  const backgroundOffset = -scrollOffset / 400;
+
+  document.body.style.backgroundPositionY = `${backgroundOffset}px`;
+
+  const overlayStrength = Math.min(scrollOffset, 2000) / 2000;
+  const overlayR = 25 * overlayStrength;
+  const overlayG = 5 * overlayStrength;
+  const overlayB = 65 * overlayStrength;
+  const overlayA = 1 - 0.35 * overlayStrength;
+  scrollWrapper.style.backgroundColor = `rgba(${overlayR}, ${overlayG}, ${overlayB}, ${overlayA})`;
+}
+
+function formatIFrames() {
+  // Set the sizes for iframes
+  const iframes = document.querySelectorAll("iframe");
+
+  iframes.forEach((iframe) => {
+    iframe.style.width = `${clientWidth}px`;
+    if (clientWidth > clientHeight) {
+      // Desktop aspect ratio
+      iframe.style.height = `${clientWidth * (9 / 16)}px`;
+    } else {
+      // Mobile aspect ratio
+      iframe.style.height = `${clientWidth * (14 / 9)}px`;
+    }
+  });
 }
