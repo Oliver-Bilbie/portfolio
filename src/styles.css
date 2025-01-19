@@ -29,11 +29,8 @@ iframe {
   position: relative;
   height: 100vh;
   color: #feda4a;
-  font-family: "Pathway Gothic One", sans-serif;
-  font-size: 500%;
-  font-weight: 600;
-  letter-spacing: 6px;
-  line-height: 150%;
+  font-family: "Russo One", serif;
+  font-size: 400%;
   perspective: 800px;
   text-align: center;
   overflow: hidden;
