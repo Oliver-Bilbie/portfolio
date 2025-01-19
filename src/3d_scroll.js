@@ -1,6 +1,8 @@
 const scrollWrapper = document.querySelector(".scroll-wrapper");
 const crawl = document.querySelector(".crawl");
 const starWars = document.querySelector(".star-wars");
+const background = document.querySelector(".background");
+const overlay = document.querySelector(".overlay");
 
 const perspective = 800;
 const rotateX = 45;
@@ -20,7 +22,7 @@ let scrollOffset = 0;
 let touchStartY = 0;
 let touchLastY = 0;
 
-scrollWrapper.addEventListener("wheel", (event) => {
+document.addEventListener("wheel", (event) => {
   event.preventDefault();
   handleScroll(event.deltaY, scrollStep);
 });
@@ -95,14 +97,14 @@ function handleScroll(deltaY, sensitivity) {
 
   const backgroundOffset = -scrollOffset / 400;
 
-  document.body.style.backgroundPositionY = `${backgroundOffset}px`;
+  background.style.backgroundPositionY = `${backgroundOffset}px`;
 
   const overlayStrength = Math.min(scrollOffset, 2000) / 2000;
   const overlayR = 25 * overlayStrength;
   const overlayG = 5 * overlayStrength;
   const overlayB = 65 * overlayStrength;
   const overlayA = 1 - 0.35 * overlayStrength;
-  scrollWrapper.style.backgroundColor = `rgba(${overlayR}, ${overlayG}, ${overlayB}, ${overlayA})`;
+  overlay.style.backgroundColor = `rgba(${overlayR}, ${overlayG}, ${overlayB}, ${overlayA})`;
 }
 
 function formatIFrames() {
