@@ -21,36 +21,48 @@ let contentHeight = getContentHeight();
 let scrollOffset = 0;
 let touchStartY = 0;
 let touchLastY = 0;
+let welcomeTextVisible = false;
+
+const fadeIn = (element, duration) => {
+  element.style.transition = `opacity ${duration}s`;
+  element.style.opacity = 1;
+};
+
+const fadeOut = (element, duration) => {
+  element.style.transition = `opacity ${duration}s`;
+  element.style.opacity = 0;
+};
+
+fadeInWelcomeText();
 
 document.addEventListener("wheel", (event) => {
-  event.preventDefault();
   handleScroll(event.deltaY, scrollStep);
 });
 
-scrollWrapper.addEventListener("touchstart", (event) => {
-  touchStartY = touchLastY = event.touches[0].clientY;
-});
+if ("ontouchstart" in window) {
+  document.addEventListener("touchstart", (event) => {
+    touchStartY = touchLastY = event.touches[0].clientY;
+  });
 
-scrollWrapper.addEventListener("touchmove", (event) => {
-  event.preventDefault();
-  const touchCurrentY = event.touches[0].clientY;
-  const deltaY = touchLastY - touchCurrentY;
-  touchLastY = touchCurrentY;
-  if (Math.abs(deltaY) > 1) {
-    handleScroll(deltaY, scrollStep / 2);
-  }
-});
+  document.addEventListener("touchmove", (event) => {
+    const touchCurrentY = event.touches[0].clientY;
+    const deltaY = touchLastY - touchCurrentY;
+    touchLastY = touchCurrentY;
+    if (Math.abs(deltaY) > 1) {
+      handleScroll(deltaY, scrollStep / 2);
+    }
+  });
 
-scrollWrapper.addEventListener("touchend", () => {
-  touchStartY = 0;
-  touchLastY = 0;
-});
+  document.addEventListener("touchend", () => {
+    touchStartY = 0;
+    touchLastY = 0;
+  });
+}
 
 window.addEventListener("resize", () => {
   // When the window is resized we re-evaluate the content height since this will change.
   // If the position that has been scrolled to is now out-of-bounds, we bring it back in.
 
-  console.log("Resizing...");
   clientWidth = document.body.clientWidth;
   formatIFrames();
   contentHeight = getContentHeight();
@@ -64,7 +76,7 @@ function getContentHeight() {
   const clone = starWars.cloneNode(true);
   clone.style.position = "absolute";
   clone.style.visibility = "hidden";
-  clone.style.height = "auto";
+  clone.style.height = "fit-content";
   clone.style.overflow = "visible";
 
   document.body.appendChild(clone);
@@ -85,30 +97,33 @@ function handleScroll(deltaY, sensitivity) {
 
   // Distance in px for the content to travel down the page
   const translateY = -scrollOffset;
-
   // Distance in px for the content to travel 'into the page'
   const translateZ = -(scrollOffset / perspective) * (clientWidth / 200);
-
   // Position of the top of the content in vh
   const top = 100 - 100 * (scrollOffset / contentHeight);
-
   crawl.style.transform = `rotateX(${rotateX}deg) translateZ(${translateZ}px) translateY(${translateY}px)`;
   crawl.style.top = `${top}vh`;
 
-  const backgroundOffset = -scrollOffset / 400;
-
+  const backgroundOffset = -(scrollOffset / contentHeight) * 4292;
   background.style.backgroundPositionY = `${backgroundOffset}px`;
 
   const overlayStrength = Math.min(scrollOffset, 2000) / 2000;
-  const overlayR = 25 * overlayStrength;
-  const overlayG = 5 * overlayStrength;
-  const overlayB = 65 * overlayStrength;
-  const overlayA = 1 - 0.35 * overlayStrength;
+  const overlayR = 47 * overlayStrength;
+  const overlayG = 25 * overlayStrength;
+  const overlayB = 95 * overlayStrength;
+  const overlayA = 1 - 0.2 * overlayStrength;
   overlay.style.backgroundColor = `rgba(${overlayR}, ${overlayG}, ${overlayB}, ${overlayA})`;
+
+  if (scrollOffset > 0 && welcomeTextVisible) {
+    fadeOutWelcomeText();
+  } else if (scrollOffset == 0 && !welcomeTextVisible) {
+    fadeInWelcomeText();
+  }
 }
 
 function formatIFrames() {
   // Set the sizes for iframes
+
   const iframes = document.querySelectorAll("iframe");
 
   iframes.forEach((iframe) => {
@@ -121,4 +136,33 @@ function formatIFrames() {
       iframe.style.height = `${clientWidth * (14 / 9)}px`;
     }
   });
+}
+
+function fadeInWelcomeText() {
+  if (!welcomeTextVisible) {
+    const fadeIn0s = document.querySelector(".fade-in-0s");
+    const fadeIn3s = document.querySelector(".fade-in-3s");
+
+    fadeIn(fadeIn0s, 3);
+
+    setTimeout(() => {
+      if (welcomeTextVisible) {
+        fadeIn(fadeIn3s, 3);
+      }
+    }, 3000);
+
+    welcomeTextVisible = true;
+  }
+}
+
+function fadeOutWelcomeText() {
+  if (welcomeTextVisible) {
+    const fadeIn0s = document.querySelector(".fade-in-0s");
+    const fadeIn3s = document.querySelector(".fade-in-3s");
+
+    fadeOut(fadeIn0s, 1);
+    fadeOut(fadeIn3s, 1);
+
+    welcomeTextVisible = false;
+  }
 }
