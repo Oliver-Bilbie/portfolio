@@ -9,7 +9,7 @@ body {
 iframe {
   pointer-events: all;
   overflow: hidden;
-  box-shadow:0 20px 20px #7353BA;
+  box-shadow: 0 20px 20px #7353ba;
 }
 
 .scroll-wrapper {
@@ -50,7 +50,6 @@ iframe {
   background-position-x: center;
   background-position-y: 0;
   pointer-events: none;
-  z-index: -10000000000;
 }
 
 .overlay {
@@ -100,4 +99,35 @@ iframe {
 
 .welcome-text > h3 {
   font-weight: lighter;
+}
+
+.star {
+  position: absolute;
+  border-radius: 50%;
+  background-color: #fff;
+  box-shadow:
+    0 0 10px 5px rgba(255, 255, 255, 0.5),
+    0 0 20px 10px rgba(255, 0, 255, 0.3),
+    0 0 30px 15px rgba(0, 255, 255, 0.2);
+  animation: pulse 5s infinite ease-in-out;
+}
+
+@keyframes pulse {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.2;
+  }
+}
+
+.star-container {
+  position: fixed;
+  width: 100vw;
+  height: 100vh;
+  overflow: visible;
+  margin: 0;
+  pointer-events: none;
+  z-index: 0;
 }

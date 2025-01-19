@@ -3,6 +3,9 @@ const crawl = document.querySelector(".crawl");
 const starWars = document.querySelector(".star-wars");
 const background = document.querySelector(".background");
 const overlay = document.querySelector(".overlay");
+const starContainer = document.querySelector(".star-container");
+
+const stars = [];
 
 const perspective = 800;
 const rotateX = 45;
@@ -17,6 +20,8 @@ let clientWidth = document.body.clientWidth;
 let clientHeight = document.body.clientHeight;
 formatIFrames();
 let contentHeight = getContentHeight();
+
+addStars();
 
 let scrollOffset = 0;
 let touchStartY = 0;
@@ -67,6 +72,7 @@ window.addEventListener("resize", () => {
   formatIFrames();
   contentHeight = getContentHeight();
   handleScroll(0, scrollStep);
+  starContainer.style.height = `${contentHeight}px`;
 });
 
 function getContentHeight() {
@@ -106,6 +112,7 @@ function handleScroll(deltaY, sensitivity) {
 
   const backgroundOffset = -(scrollOffset / contentHeight) * 4292;
   background.style.backgroundPositionY = `${backgroundOffset}px`;
+  starContainer.style.top = `${backgroundOffset}px`;
 
   const overlayStrength = Math.min(scrollOffset, 2000) / 2000;
   const overlayR = 47 * overlayStrength;
@@ -164,5 +171,31 @@ function fadeOutWelcomeText() {
     fadeOut(fadeIn3s, 1);
 
     welcomeTextVisible = false;
+  }
+}
+
+function addStars() {
+  starContainer.style.height = `${contentHeight}px`;
+
+  const starCount = 0.00001 * (clientWidth * contentHeight);
+
+  for (let i = 0; i < starCount; i++) {
+    const star = document.createElement("div");
+    star.classList.add("star");
+
+    const size = Math.random() * (8 - 4) + 4;
+    star.style.width = `${size}px`;
+    star.style.height = `${size}px`;
+
+    const x = Math.random() * 100;
+    const y = Math.random() * 100;
+    star.style.left = `${x}%`;
+    star.style.top = `${y}%`;
+
+    const delay = Math.random() * 5;
+    star.style.animationDelay = `${delay}s`;
+
+    starContainer.appendChild(star);
+    stars.push({ element: star, x, y });
   }
 }
