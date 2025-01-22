@@ -13,7 +13,7 @@ const rotateX = 45;
 let scrollStep = 60;
 if (navigator.userAgent.includes("Firefox")) {
   // Firefox needs to scroll slower than other browsers for equivalent behavior
-  scrollStep = 20;
+  scrollStep = 100;
 }
 
 let clientWidth = document.body.clientWidth;
@@ -114,6 +114,23 @@ function handleScroll(deltaY, sensitivity) {
   background.style.backgroundPositionY = `${backgroundOffset}px`;
   starContainer.style.top = `${backgroundOffset}px`;
 
+  const viewportStart = backgroundOffset;
+  const viewportEnd = backgroundOffset + clientHeight;
+
+  // Find the range of stars to display using binary search
+  const firstVisibleIndex = binarySearch(stars, viewportStart, "start");
+  const lastVisibleIndex = binarySearch(stars, viewportEnd, "end");
+
+  // Remove all currently displayed stars
+  starContainer.innerHTML = "";
+
+  // Append only the visible stars
+  for (let i = firstVisibleIndex; i <= lastVisibleIndex; i++) {
+    if (!stars[i].element.parentNode) {
+      starContainer.appendChild(stars[i].element);
+    }
+  }
+
   const overlayStrength = Math.min(scrollOffset, 2000) / 2000;
   const overlayR = 47 * overlayStrength;
   const overlayG = 25 * overlayStrength;
@@ -179,6 +196,7 @@ function addStars() {
 
   const starCount = 0.00001 * (clientWidth * contentHeight);
 
+  // Create stars and store them in a sorted array by their `y` coordinate
   for (let i = 0; i < starCount; i++) {
     const star = document.createElement("div");
     star.classList.add("star");
@@ -188,14 +206,45 @@ function addStars() {
     star.style.height = `${size}px`;
 
     const x = Math.random() * 100;
-    const y = Math.random() * 100;
+    const y = Math.random() * contentHeight;
     star.style.left = `${x}%`;
-    star.style.top = `${y}%`;
+    star.style.top = `${y}px`;
+    star.style.animationDelay =`${Math.random() * 5}s`;
 
-    const delay = Math.random() * 5;
-    star.style.animationDelay = `${delay}s`;
-
-    starContainer.appendChild(star);
-    stars.push({ element: star, x, y });
+    stars.push({ element: star, y });
   }
+
+  // Sort the stars by their `y` coordinate
+  stars.sort((a, b) => a.y - b.y);
+}
+
+function binarySearch(stars, target, mode) {
+  // Binary search to find the index of the first or last visible star
+  let low = 0;
+  let high = stars.length - 1;
+  let result = -1;
+
+  while (low <= high) {
+    const mid = Math.floor((low + high) / 2);
+
+    if (mode === "start") {
+      // Find the first star with `y` >= target
+      if (stars[mid].y >= target) {
+        result = mid;
+        high = mid - 1;
+      } else {
+        low = mid + 1;
+      }
+    } else if (mode === "end") {
+      // Find the last star with `y` <= target
+      if (stars[mid].y <= target) {
+        result = mid;
+        low = mid + 1;
+      } else {
+        high = mid - 1;
+      }
+    }
+  }
+
+  return result === -1 ? (mode === "start" ? 0 : stars.length - 1) : result;
 }
