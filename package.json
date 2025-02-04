@@ -4,5 +4,9 @@
   },
   "scripts": {
     "start": "http-server src/ -o -p 8080 -c-1"
+  },
+  "devDependencies": {
+    "prettier": "^3.4.2",
+    "terser": "^5.37.0"
   }
 }
