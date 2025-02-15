@@ -6,9 +6,15 @@ import {
 } from "./dom.js";
 import { binarySearch } from "./utils.js";
 
-export function onResize(clientSize, contentHeight) {
+export function onResize(clientSize, contentHeight, stars) {
   setIFrameSizes(clientSize);
   setElementHeights(clientSize.height, contentHeight);
+  moveBackground(
+    document.getElementById("scroll-container").scrollTop,
+    contentHeight,
+    clientSize.height,
+    stars,
+  );
 }
 
 function moveScrollContent(

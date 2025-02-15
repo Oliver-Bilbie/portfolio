@@ -9,12 +9,12 @@ window.addEventListener("load", () => {
 
   let clientSize = getClientSize();
   let contentHeight = getContentHeight();
-  onResize(clientSize, contentHeight);
-
-  contentHeight = getContentHeight();
-  onResize(clientSize, contentHeight);
+  onResize(clientSize, contentHeight, []);
 
   const stars = generateStars(clientSize.width, contentHeight);
+
+  contentHeight = getContentHeight();
+  onResize(clientSize, contentHeight, stars);
 
   const welcomeState = new WelcomeState();
   fadeInWelcomeText(welcomeState);
@@ -36,6 +36,6 @@ window.addEventListener("load", () => {
   window.addEventListener("resize", () => {
     clientSize = getClientSize();
     contentHeight = getContentHeight();
-    onResize(clientSize, contentHeight);
+    onResize(clientSize, contentHeight, stars);
   });
 });
