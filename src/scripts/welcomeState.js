@@ -1,5 +1,5 @@
 export class WelcomeState {
-  #visible = true;
+  #visible = false;
 
   get isVisible() {
     return this.#visible;

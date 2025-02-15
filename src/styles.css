@@ -86,6 +86,11 @@ iframe {
   overflow-y: scroll;
   -webkit-overflow-scrolling: touch;
   scroll-behavior: smooth;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+.star-container::-webkit-scrollbar {
+  display: none;
 }
 
 .twinklers {
