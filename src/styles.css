@@ -12,15 +12,7 @@ iframe {
   box-shadow: 0 20px 20px #7353ba;
 }
 
-.scroll-wrapper {
-  overflow-y: auto;
-  overflow-x: hidden;
-  height: 100vh;
-  position: relative;
-  clip-path: inset(0 0 0 0);
-}
-
-.star-wars {
+#content-container {
   display: flex;
   justify-content: center;
   position: relative;
@@ -33,14 +25,14 @@ iframe {
   overflow: hidden;
 }
 
-.crawl {
+#crawl {
   position: absolute;
   top: 100vh;
   transform-origin: 50vw 15vh;
   transform: rotateX(45deg);
 }
 
-.background {
+#background {
   width: 100vw;
   height: 100vh;
   overflow: hidden;
@@ -52,7 +44,7 @@ iframe {
   pointer-events: none;
 }
 
-.overlay {
+#overlay {
   position: fixed;
   width: 100vw;
   height: 100vh;
@@ -63,7 +55,7 @@ iframe {
   z-index: 0;
 }
 
-.fade {
+#fade {
   position: fixed;
   width: 100vw;
   height: 40vh;
@@ -74,7 +66,7 @@ iframe {
   pointer-events: none;
 }
 
-.star-container {
+#scroll-container {
   position: absolute;
   top: 0;
   left: 0;
@@ -82,18 +74,18 @@ iframe {
   height: 100vh;
   margin: 0;
   z-index: 0;
-  pointer-events: auto;
+  pointer-events: all;
   overflow-y: scroll;
   -webkit-overflow-scrolling: touch;
   scroll-behavior: smooth;
   -ms-overflow-style: none;
   scrollbar-width: none;
 }
-.star-container::-webkit-scrollbar {
+#scroll-container::-webkit-scrollbar {
   display: none;
 }
 
-.twinklers {
+#star-container {
   position: fixed;
   top: 0;
   left: 0;
@@ -104,7 +96,7 @@ iframe {
   pointer-events: none;
 }
 
-.welcome-text {
+#welcome-text {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -117,17 +109,14 @@ iframe {
   text-align: center;
   overflow: hidden;
 }
-
-.welcome-text > * {
+#welcome-text > * {
   margin: 10px;
   opacity: 0;
 }
-
-.welcome-text > h1 {
+#welcome-text > h1 {
   font-weight: normal;
 }
-
-.welcome-text > h3 {
+#welcome-text > h3 {
   font-weight: lighter;
 }
 

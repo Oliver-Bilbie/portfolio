@@ -18,7 +18,7 @@ function moveScrollContent(
   clientWidth,
   contentHeight,
 ) {
-  const crawl = document.querySelector(".crawl");
+  const crawl = document.getElementById("crawl");
 
   // Distance in px for the scrolling content to travel 'into the page'
   const translateZ = -(scrollOffset / perspective) * (clientWidth / 200);
@@ -32,9 +32,9 @@ function moveScrollContent(
 function moveBackground(scrollOffset, contentHeight, clientHeight, stars) {
   const backgroundOffset = -(scrollOffset / contentHeight) * 4292;
 
-  document.querySelector(".background").style.backgroundPositionY =
+  document.getElementById("background").style.backgroundPositionY =
     `${backgroundOffset}px`;
-  document.querySelector(".twinklers").style.top = `${backgroundOffset}px`;
+  document.getElementById("star-container").style.top = `${backgroundOffset}px`;
 
   updateStars(stars, backgroundOffset, clientHeight);
 }
@@ -47,7 +47,7 @@ function updateStars(stars, backgroundOffset, clientHeight) {
   const firstVisibleIndex = binarySearch(stars, viewportStart, false);
   const lastVisibleIndex = binarySearch(stars, viewportEnd, true);
 
-  const starBody = document.querySelector(".twinklers");
+  const starBody = document.getElementById("star-container");
 
   stars.map((star, i) => {
     const shouldExist = i >= firstVisibleIndex && i <= lastVisibleIndex;
@@ -68,7 +68,7 @@ function handleWelcomeMsg(scrollOffset, welcomeState) {
   const overlayB = 95 * overlayStrength;
   const overlayA = 1 - 0.2 * overlayStrength;
 
-  document.querySelector(".overlay").style.backgroundColor =
+  document.getElementById("overlay").style.backgroundColor =
     `rgba(${overlayR}, ${overlayG}, ${overlayB}, ${overlayA})`;
 
   if (scrollOffset > 0) {

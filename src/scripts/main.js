@@ -17,7 +17,7 @@ window.addEventListener("load", () => {
   fadeInWelcomeText(welcomeState);
 
   document
-    .querySelector(".star-container")
+    .getElementById("scroll-container")
     .addEventListener("scroll", (event) => {
       onScroll(
         event.target.scrollTop,

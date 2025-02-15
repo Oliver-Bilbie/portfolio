@@ -9,12 +9,12 @@ export function getContentHeight() {
   // Find the natural height of the content (if it were allowed to overflow)
   // by creating an invisible clone.
 
-  const clone = document.querySelector(".star-wars").cloneNode(true);
+  const clone = document.getElementById("content-container").cloneNode(true);
   clone.style.position = "absolute";
   clone.style.visibility = "hidden";
   clone.style.height = "fit-content";
   clone.style.overflow = "visible";
-  clone.querySelector(".crawl").style.position = "relative";
+  clone.querySelector("#crawl").style.position = "relative";
 
   document.body.appendChild(clone);
   const contentHeight = clone.offsetHeight;
@@ -25,8 +25,8 @@ export function getContentHeight() {
 
 export function setElementHeights(contentHeight, clientHeight) {
   let elementHeight = contentHeight + clientHeight;
-  document.querySelector(".star-body").style.height = `${elementHeight}px`;
-  document.querySelector(".twinklers").style.height = `${elementHeight}px`;
+  document.getElementById("scroll-body").style.height = `${elementHeight}px`;
+  document.getElementById("star-container").style.height = `${elementHeight}px`;
 }
 
 export function setIFrameSizes(clientSize) {
