@@ -34,7 +34,7 @@ iframe {
 }
 
 .crawl {
-  position: relative;
+  position: absolute;
   top: 100vh;
   transform-origin: 50vw 15vh;
   transform: rotateX(45deg);
@@ -72,6 +72,20 @@ iframe {
   background-image: linear-gradient(0deg, transparent, black 75%);
   z-index: 1;
   pointer-events: none;
+}
+
+.star-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  margin: 0;
+  z-index: 0;
+  pointer-events: auto;
+  overflow-y: scroll;
+  -webkit-overflow-scrolling: touch;
+  scroll-behavior: smooth;
 }
 
 .welcome-text {
@@ -120,17 +134,4 @@ iframe {
   50% {
     opacity: 0.2;
   }
-}
-
-.star-container {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
-  margin: 0;
-  z-index: 0;
-  overflow-y: scroll;
-  -webkit-overflow-scrolling: touch;
-  pointer-events: auto;
 }

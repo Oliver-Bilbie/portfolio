@@ -22,6 +22,7 @@ export function getContentHeight() {
   clone.style.visibility = "hidden";
   clone.style.height = "fit-content";
   clone.style.overflow = "visible";
+  clone.querySelector(".crawl").style.position = "relative";
 
   document.body.appendChild(clone);
   const contentHeight = clone.offsetHeight;
