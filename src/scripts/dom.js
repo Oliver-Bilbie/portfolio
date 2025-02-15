@@ -23,9 +23,10 @@ export function getContentHeight() {
   return contentHeight;
 }
 
-export function setElementHeights(contentHeight) {
-  document.querySelector(".star-body").style.height = `${contentHeight}px`;
-  document.querySelector(".twinklers").style.height = `${contentHeight}px`;
+export function setElementHeights(contentHeight, clientHeight) {
+  let elementHeight = contentHeight + clientHeight;
+  document.querySelector(".star-body").style.height = `${elementHeight}px`;
+  document.querySelector(".twinklers").style.height = `${elementHeight}px`;
 }
 
 export function setIFrameSizes(clientSize) {
@@ -47,30 +48,30 @@ function fadeElement(element, fadeIn, timeSeconds) {
   element.style.opacity = fadeIn ? 1 : 0;
 }
 
-export function fadeInWelcomeText(getVisibility, setVisibility) {
-  if (!getVisibility()) {
+export function fadeInWelcomeText(welcomeState) {
+  if (!welcomeState.isVisible) {
     const fadeIn0s = document.querySelector(".fade-in-0s");
     fadeElement(fadeIn0s, true, 3);
 
     const fadeIn3s = document.querySelector(".fade-in-3s");
     setTimeout(() => {
-      if (getVisibility()) {
+      if (welcomeState.isVisible) {
         fadeElement(fadeIn3s, true, 3);
       }
     }, 3000);
 
-    setVisibility(true);
+    welcomeState.isVisible = true;
   }
 }
 
-export function fadeOutWelcomeText(getVisibility, setVisibility) {
-  if (getVisibility()) {
+export function fadeOutWelcomeText(welcomeState) {
+  if (welcomeState.isVisible) {
     const fadeIn0s = document.querySelector(".fade-in-0s");
     fadeElement(fadeIn0s, false, 1);
 
     const fadeIn3s = document.querySelector(".fade-in-3s");
     fadeElement(fadeIn3s, false, 1);
 
-    setVisibility(false);
+    welcomeState.isVisible = false;
   }
 }

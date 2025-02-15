@@ -1,40 +1,19 @@
-import {
-  getClientSize,
-  getContentHeight,
-  setIFrameSizes,
-  fadeInWelcomeText,
-} from "./dom.js";
+import { getClientSize, getContentHeight, fadeInWelcomeText } from "./dom.js";
 import { onResize, onScroll } from "./events.js";
 import { generateStars } from "./utils.js";
+import { WelcomeState } from "./welcomeState.js";
 
 const perspective = 800;
 const rotateX = 45;
 
-let welcomeTextVisible = false;
-
-const getWelcomeVisibility = () => {
-  return welcomeTextVisible;
-};
-const setWelcomeVisibility = (isVisibile) => {
-  welcomeTextVisible = isVisibile;
-};
-
 let clientSize = getClientSize();
 let contentHeight = getContentHeight();
-
-setIFrameSizes(clientSize);
-fadeInWelcomeText(getWelcomeVisibility, setWelcomeVisibility);
-
-document.querySelector(".star-body").style.height = `${contentHeight}px`;
-document.querySelector(".twinklers").style.height = `${contentHeight}px`;
+onResize(clientSize, contentHeight);
 
 const stars = generateStars(clientSize.width, contentHeight);
 
-window.addEventListener("resize", () => {
-  clientSize = getClientSize();
-  contentHeight = getContentHeight();
-  onResize(clientSize, contentHeight);
-});
+const welcomeState = new WelcomeState();
+fadeInWelcomeText(welcomeState);
 
 document
   .querySelector(".star-container")
@@ -46,7 +25,12 @@ document
       clientSize,
       contentHeight,
       stars,
-      getWelcomeVisibility,
-      setWelcomeVisibility,
+      welcomeState
     );
   });
+
+window.addEventListener("resize", () => {
+  clientSize = getClientSize();
+  contentHeight = getContentHeight();
+  onResize(clientSize, contentHeight);
+});

@@ -8,7 +8,7 @@ import { binarySearch } from "./utils.js";
 
 export function onResize(clientSize, contentHeight) {
   setIFrameSizes(clientSize);
-  setElementHeights(contentHeight);
+  setElementHeights(clientSize.height, contentHeight);
 }
 
 function moveScrollContent(
@@ -61,11 +61,7 @@ function updateStars(stars, backgroundOffset, clientHeight) {
   });
 }
 
-function handleWelcomeMsg(
-  scrollOffset,
-  getWelcomeVisibility,
-  setWelcomeVisibility,
-) {
+function handleWelcomeMsg(scrollOffset, welcomeState) {
   const overlayStrength = Math.min(scrollOffset, 2000) / 2000;
   const overlayR = 47 * overlayStrength;
   const overlayG = 25 * overlayStrength;
@@ -76,10 +72,10 @@ function handleWelcomeMsg(
     `rgba(${overlayR}, ${overlayG}, ${overlayB}, ${overlayA})`;
 
   if (scrollOffset > 0) {
-    fadeOutWelcomeText(getWelcomeVisibility, setWelcomeVisibility);
+    fadeOutWelcomeText(welcomeState);
     return false;
   } else if (scrollOffset == 0) {
-    fadeInWelcomeText(getWelcomeVisibility, setWelcomeVisibility);
+    fadeInWelcomeText(welcomeState);
     return true;
   }
 }
@@ -91,8 +87,7 @@ export function onScroll(
   clientSize,
   contentHeight,
   stars,
-  getWelcomeVisibility,
-  setWelcomeVisibility,
+  welcomeState,
 ) {
   moveScrollContent(
     scrollOffset,
@@ -102,5 +97,5 @@ export function onScroll(
     contentHeight,
   );
   moveBackground(scrollOffset, contentHeight, clientSize.height, stars);
-  handleWelcomeMsg(scrollOffset, getWelcomeVisibility, setWelcomeVisibility);
+  handleWelcomeMsg(scrollOffset, welcomeState);
 }
