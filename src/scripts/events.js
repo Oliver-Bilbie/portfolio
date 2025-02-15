@@ -1,6 +1,6 @@
 import {
   setIFrameSizes,
-  setStarContainerHeight,
+  setElementHeights,
   fadeInWelcomeText,
   fadeOutWelcomeText,
 } from "./dom.js";
@@ -27,7 +27,7 @@ export function onResize(
     getWelcomeVisibility,
     setWelcomeVisibility,
   );
-  setStarContainerHeight(contentHeight);
+  setElementHeights(contentHeight);
 }
 
 export function calculateScrollOffset(
@@ -66,19 +66,20 @@ function moveBackground(scrollOffset, contentHeight, clientHeight, stars) {
 
   document.querySelector(".background").style.backgroundPositionY =
     `${backgroundOffset}px`;
+  document.querySelector(".twinklers").style.top = `${backgroundOffset}px`;
 
   updateStars(stars, backgroundOffset, clientHeight);
 }
 
 function updateStars(stars, backgroundOffset, clientHeight) {
-  const viewportStart = backgroundOffset;
-  const viewportEnd = backgroundOffset + clientHeight;
+  const viewportStart = -backgroundOffset;
+  const viewportEnd = viewportStart + clientHeight;
 
   // Find the range of stars to display using binary search
   const firstVisibleIndex = binarySearch(stars, viewportStart, false);
   const lastVisibleIndex = binarySearch(stars, viewportEnd, true);
 
-  const starBody = document.querySelector(".star-body");
+  const starBody = document.querySelector(".twinklers");
 
   stars.map((star, i) => {
     const shouldExist = i >= firstVisibleIndex && i <= lastVisibleIndex;

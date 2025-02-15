@@ -31,8 +31,9 @@ export function getContentHeight() {
   return contentHeight;
 }
 
-export function setStarContainerHeight(contentHeight) {
-  document.querySelector(".star-container").style.height = `${contentHeight}px`;
+export function setElementHeights(contentHeight) {
+  document.querySelector(".star-body").style.height = `${contentHeight}px`;
+  document.querySelector(".twinklers").style.height = `${contentHeight}px`;
 }
 
 export function setIFrameSizes(clientSize) {

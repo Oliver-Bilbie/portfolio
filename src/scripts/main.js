@@ -31,6 +31,7 @@ setIFrameSizes(clientSize);
 fadeInWelcomeText(getWelcomeVisibility, setWelcomeVisibility);
 
 document.querySelector(".star-body").style.height = `${contentHeight}px`;
+document.querySelector(".twinklers").style.height = `${contentHeight}px`;
 const stars = generateStars(clientSize.width, contentHeight);
 
 window.addEventListener("resize", () => {
@@ -48,15 +49,17 @@ window.addEventListener("resize", () => {
   );
 });
 
-document.querySelector(".star-container").addEventListener("scroll", (event) => {
-  onScroll(
-    event.target.scrollTop,
-    rotateX,
-    perspective,
-    clientSize,
-    contentHeight,
-    stars,
-    getWelcomeVisibility,
-    setWelcomeVisibility,
-  );
-});
+document
+  .querySelector(".star-container")
+  .addEventListener("scroll", (event) => {
+    onScroll(
+      event.target.scrollTop,
+      rotateX,
+      perspective,
+      clientSize,
+      contentHeight,
+      stars,
+      getWelcomeVisibility,
+      setWelcomeVisibility,
+    );
+  });

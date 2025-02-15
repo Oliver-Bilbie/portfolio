@@ -88,6 +88,17 @@ iframe {
   scroll-behavior: smooth;
 }
 
+.twinklers {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  margin: 0;
+  z-index: 0;
+  pointer-events: none;
+}
+
 .welcome-text {
   display: flex;
   flex-direction: column;
