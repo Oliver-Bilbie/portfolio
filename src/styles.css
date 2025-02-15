@@ -10,6 +10,7 @@ iframe {
   pointer-events: all;
   overflow: hidden;
   box-shadow: 0 20px 20px #7353ba;
+  border-radius: 2rem;
 }
 
 #content-container {
