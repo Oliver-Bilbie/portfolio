@@ -6,27 +6,8 @@ import {
 } from "./dom.js";
 import { binarySearch } from "./utils.js";
 
-export function onResize(
-  rotateX,
-  perspective,
-  clientSize,
-  contentHeight,
-  stars,
-  getWelcomeVisibility,
-  setWelcomeVisibility,
-  scrollOffset,
-) {
+export function onResize(clientSize, contentHeight) {
   setIFrameSizes(clientSize);
-  onScroll(
-    scrollOffset,
-    rotateX,
-    perspective,
-    clientSize,
-    contentHeight,
-    stars,
-    getWelcomeVisibility,
-    setWelcomeVisibility,
-  );
   setElementHeights(contentHeight);
 }
 

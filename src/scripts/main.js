@@ -37,16 +37,7 @@ const stars = generateStars(clientSize.width, contentHeight);
 window.addEventListener("resize", () => {
   clientSize = getClientSize();
   contentHeight = getContentHeight();
-  onResize(
-    rotateX,
-    perspective,
-    clientSize,
-    contentHeight,
-    stars,
-    getWelcomeVisibility,
-    setWelcomeVisibility,
-    scrollOffset,
-  );
+  onResize(clientSize, contentHeight);
 });
 
 document
