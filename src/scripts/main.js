@@ -30,7 +30,7 @@ let contentHeight = getContentHeight();
 setIFrameSizes(clientSize);
 fadeInWelcomeText(getWelcomeVisibility, setWelcomeVisibility);
 
-document.querySelector(".star-container").style.height = `${contentHeight}px`;
+document.querySelector(".star-body").style.height = `${contentHeight}px`;
 const stars = generateStars(clientSize.width, contentHeight);
 
 window.addEventListener("resize", () => {
@@ -48,16 +48,9 @@ window.addEventListener("resize", () => {
   );
 });
 
-document.addEventListener("wheel", (event) => {
-  // Since the page does not naturally scroll, we handle mousewheel events programatically
-  scrollOffset = calculateScrollOffset(
-    event.deltaY,
-    scrollStep,
-    contentHeight,
-    scrollOffset,
-  );
+document.querySelector(".star-container").addEventListener("scroll", (event) => {
   onScroll(
-    scrollOffset,
+    event.target.scrollTop,
     rotateX,
     perspective,
     clientSize,
@@ -67,23 +60,3 @@ document.addEventListener("wheel", (event) => {
     setWelcomeVisibility,
   );
 });
-
-if ("ontouchstart" in window) {
-  document.addEventListener("touchstart", (event) => {
-    touchStartY = touchLastY = event.touches[0].clientY;
-  });
-
-  document.addEventListener("touchmove", (event) => {
-    const touchCurrentY = event.touches[0].clientY;
-    const deltaY = touchLastY - touchCurrentY;
-    touchLastY = touchCurrentY;
-    if (Math.abs(deltaY) > 1) {
-      handleScroll(deltaY, scrollStep / 2);
-    }
-  });
-
-  document.addEventListener("touchend", () => {
-    touchStartY = 0;
-    touchLastY = 0;
-  });
-}

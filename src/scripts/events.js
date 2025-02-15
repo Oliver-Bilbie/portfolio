@@ -66,7 +66,6 @@ function moveBackground(scrollOffset, contentHeight, clientHeight, stars) {
 
   document.querySelector(".background").style.backgroundPositionY =
     `${backgroundOffset}px`;
-  document.querySelector(".star-container").style.top = `${backgroundOffset}px`;
 
   updateStars(stars, backgroundOffset, clientHeight);
 }
@@ -79,16 +78,16 @@ function updateStars(stars, backgroundOffset, clientHeight) {
   const firstVisibleIndex = binarySearch(stars, viewportStart, false);
   const lastVisibleIndex = binarySearch(stars, viewportEnd, true);
 
-  const starContainer = document.querySelector(".star-container");
+  const starBody = document.querySelector(".star-body");
 
   stars.map((star, i) => {
     const shouldExist = i >= firstVisibleIndex && i <= lastVisibleIndex;
     const doesExist = star.element.parentNode;
 
     if (shouldExist && !doesExist) {
-      starContainer.appendChild(star.element);
+      starBody.appendChild(star.element);
     } else if (!shouldExist && doesExist) {
-      starContainer.removeChild(star.element);
+      starBody.removeChild(star.element);
     }
   });
 }

@@ -123,11 +123,14 @@ iframe {
 }
 
 .star-container {
-  position: fixed;
+  position: absolute;
+  top: 0;
+  left: 0;
   width: 100vw;
   height: 100vh;
-  overflow: visible;
   margin: 0;
-  pointer-events: none;
   z-index: 0;
+  overflow-y: scroll;
+  -webkit-overflow-scrolling: touch;
+  pointer-events: auto;
 }
