@@ -11,19 +11,6 @@ export function onResize(clientSize, contentHeight) {
   setElementHeights(contentHeight);
 }
 
-export function calculateScrollOffset(
-  deltaY,
-  sensitivity,
-  contentHeight,
-  scrollOffset,
-) {
-  if (deltaY > 0) {
-    return Math.min(scrollOffset + sensitivity, contentHeight);
-  } else {
-    return Math.max(scrollOffset - sensitivity, 0);
-  }
-}
-
 function moveScrollContent(
   scrollOffset,
   rotateX,

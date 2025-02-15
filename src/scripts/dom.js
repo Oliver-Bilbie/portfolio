@@ -1,11 +1,3 @@
-export function getScrollStep() {
-  if (navigator.userAgent.includes("Firefox")) {
-    return 100;
-  } else {
-    return 60;
-  }
-}
-
 export function getClientSize() {
   return {
     width: document.body.clientWidth,
