@@ -11,6 +11,9 @@ window.addEventListener("load", () => {
   let contentHeight = getContentHeight();
   onResize(clientSize, contentHeight);
 
+  contentHeight = getContentHeight();
+  onResize(clientSize, contentHeight);
+
   const stars = generateStars(clientSize.width, contentHeight);
 
   const welcomeState = new WelcomeState();
