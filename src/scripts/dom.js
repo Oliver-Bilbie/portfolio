@@ -30,16 +30,19 @@ export function setElementHeights(contentHeight, clientHeight) {
 }
 
 export function setIFrameSizes(clientSize) {
-  document.querySelectorAll("iframe").forEach((iframe) => {
-    iframe.style.width = `${clientSize.width}px`;
+  const iframeWidth = Math.min(clientSize.width, 1600);
+  let iframeHeight = 0;
+  if (clientSize.width > 1200) {
+    // Desktop aspect ratio
+    iframeHeight = iframeWidth * (9 / 16);
+  } else {
+    // Mobile aspect ratio
+    iframeHeight = iframeWidth * (14 / 9);
+  }
 
-    if (clientSize.width > clientSize.height) {
-      // Desktop aspect ratio
-      iframe.style.height = `${clientSize.width * (9 / 16)}px`;
-    } else {
-      // Mobile aspect ratio
-      iframe.style.height = `${clientSize.width * (14 / 9)}px`;
-    }
+  document.querySelectorAll("iframe").forEach((iframe) => {
+    iframe.style.width = `${iframeWidth}px`;
+    iframe.style.height = `${iframeHeight}px`;
   });
 }
 

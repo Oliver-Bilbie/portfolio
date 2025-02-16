@@ -19,9 +19,9 @@ window.addEventListener("load", () => {
   const welcomeState = new WelcomeState();
   fadeInWelcomeText(welcomeState);
 
-  document
-    .getElementById("scroll-container")
-    .addEventListener("scroll", (event) => {
+  document.getElementById("scroll-container").addEventListener(
+    "scroll",
+    (event) => {
       onScroll(
         event.target.scrollTop,
         rotateX,
@@ -31,11 +31,17 @@ window.addEventListener("load", () => {
         stars,
         welcomeState,
       );
-    });
+    },
+    { passive: true },
+  );
 
-  window.addEventListener("resize", () => {
-    clientSize = getClientSize();
-    contentHeight = getContentHeight();
-    onResize(clientSize, contentHeight, stars);
-  });
+  window.addEventListener(
+    "resize",
+    () => {
+      clientSize = getClientSize();
+      contentHeight = getContentHeight();
+      onResize(clientSize, contentHeight, stars);
+    },
+    { passive: true },
+  );
 });

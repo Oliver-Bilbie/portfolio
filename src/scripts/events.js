@@ -27,7 +27,7 @@ function moveScrollContent(
   const crawl = document.getElementById("crawl");
 
   // Distance in px for the scrolling content to travel 'into the page'
-  const translateZ = -(scrollOffset / perspective) * (clientWidth / 200);
+  const translateZ = -(scrollOffset / perspective) * (clientWidth / 37);
   // Position of the top of the scrolling content in vh
   const top = 100 - 100 * (scrollOffset / contentHeight);
 
