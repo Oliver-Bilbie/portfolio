@@ -42,7 +42,7 @@ iframe {
   height: 100vh;
   overflow: hidden;
   margin: 0;
-  background-image: url("./background.png");
+  background-image: url("images/background.png");
   background-size: cover;
   background-position-x: center;
   background-position-y: 0;
