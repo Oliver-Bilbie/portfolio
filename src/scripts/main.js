@@ -53,14 +53,14 @@ window.addEventListener("load", () => {
   );
 
   // Handle goto button clicks
-  for (let i = 2; i <= 7; i++) {
-    document
-      .getElementById(`goto-section-${i}`)
-      .addEventListener("click", () => {
+  for (let i = 1; i <= 7; i++) {
+    document.querySelectorAll(`.goto-section-${i}`).forEach((element) => {
+      element.addEventListener("click", () => {
         const targetPosition = getSectionPosition(i) + clientSize.height;
         document
           .getElementById("scroll-container")
           .scrollTo({ top: targetPosition, behavior: "smooth" });
       });
+    });
   }
 });

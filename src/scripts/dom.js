@@ -49,15 +49,8 @@ export function setElementHeights(contentHeight, clientHeight) {
 }
 
 export function setIFrameSizes(clientSize) {
-  const iframeWidth = Math.min(clientSize.width, 1600);
-  let iframeHeight = 0;
-  if (clientSize.width > 1200) {
-    // Desktop aspect ratio
-    iframeHeight = iframeWidth * (9 / 16);
-  } else {
-    // Mobile aspect ratio
-    iframeHeight = iframeWidth * (14 / 9);
-  }
+  const iframeWidth = Math.min(clientSize.width * 0.9, 1600);
+  let iframeHeight = Math.max(iframeWidth * (9 / 16), 800);
 
   document.querySelectorAll("iframe").forEach((iframe) => {
     iframe.style.width = `${iframeWidth}px`;
