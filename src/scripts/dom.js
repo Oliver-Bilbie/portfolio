@@ -23,6 +23,25 @@ export function getContentHeight() {
   return contentHeight;
 }
 
+export function getSectionPosition(sectionNumber) {
+  // Find the scroll amount required to reach a section by creating an invisible clone.
+
+  const clone = document.getElementById("content-container").cloneNode(true);
+  clone.style.position = "absolute";
+  clone.style.visibility = "hidden";
+  clone.style.height = "fit-content";
+  clone.style.overflow = "visible";
+  clone.querySelector("#crawl").style.position = "relative";
+
+  document.body.appendChild(clone);
+  const sectionPosition = clone.querySelector(
+    `#section-${sectionNumber}`,
+  ).offsetTop;
+  document.body.removeChild(clone);
+
+  return sectionPosition;
+}
+
 export function setElementHeights(contentHeight, clientHeight) {
   let elementHeight = contentHeight + clientHeight;
   document.getElementById("scroll-body").style.height = `${elementHeight}px`;
