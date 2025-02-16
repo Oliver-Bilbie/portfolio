@@ -36,17 +36,19 @@ function moveScrollContent(
 }
 
 function moveBackground(scrollOffset, contentHeight, clientHeight, stars) {
-  const backgroundOffset = -(scrollOffset / contentHeight) * 4292;
+  const backgroundOffset = -(scrollOffset / contentHeight) * 800;
+  const starsOffset = 1.3 * backgroundOffset;
 
   document.getElementById("background").style.backgroundPositionY =
     `${backgroundOffset}px`;
-  document.getElementById("star-container").style.top = `${backgroundOffset}px`;
+  document.getElementById("star-container").style.top =
+    `${starsOffset}px`;
 
-  updateStars(stars, backgroundOffset, clientHeight);
+  updateStars(stars, starsOffset, clientHeight);
 }
 
-function updateStars(stars, backgroundOffset, clientHeight) {
-  const viewportStart = -backgroundOffset;
+function updateStars(stars, starsOffset, clientHeight) {
+  const viewportStart = -starsOffset;
   const viewportEnd = viewportStart + clientHeight;
 
   // Find the range of stars to display using binary search
