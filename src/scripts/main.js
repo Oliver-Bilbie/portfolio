@@ -9,7 +9,6 @@ import { generateStars } from "./utils.js";
 import { WelcomeState } from "./welcomeState.js";
 
 window.addEventListener("load", () => {
-  const perspective = 800;
   const rotateX = 45;
 
   let clientSize = getClientSize();
@@ -30,7 +29,6 @@ window.addEventListener("load", () => {
       onScroll(
         event.target.scrollTop,
         rotateX,
-        perspective,
         clientSize,
         contentHeight,
         welcomeState,

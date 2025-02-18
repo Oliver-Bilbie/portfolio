@@ -15,22 +15,9 @@ export function onResize(clientSize, contentHeight) {
   );
 }
 
-function moveScrollContent(
-  scrollOffset,
-  rotateX,
-  perspective,
-  clientWidth,
-  contentHeight,
-) {
+function moveScrollContent(scrollOffset, rotateX) {
   const crawl = document.getElementById("crawl");
-
-  // Distance in px for the scrolling content to travel 'into the page'
-  const translateZ = -(scrollOffset / perspective) * (clientWidth / 37);
-  // Position of the top of the scrolling content in vh
-  const top = 100 - 100 * (scrollOffset / contentHeight);
-
-  crawl.style.transform = `rotateX(${rotateX}deg) translateZ(${translateZ}px) translateY(${-scrollOffset}px)`;
-  crawl.style.top = `${top}vh`;
+  crawl.style.transform = `rotateX(${rotateX}deg) translateY(${-scrollOffset}px)`;
 }
 
 function moveBackground(scrollOffset, contentHeight, clientSize) {
@@ -64,18 +51,11 @@ function handleWelcomeMsg(scrollOffset, welcomeState) {
 export function onScroll(
   scrollOffset,
   rotateX,
-  perspective,
   clientSize,
   contentHeight,
   welcomeState,
 ) {
-  moveScrollContent(
-    scrollOffset,
-    rotateX,
-    perspective,
-    clientSize.width,
-    contentHeight,
-  );
+  moveScrollContent(scrollOffset, rotateX);
   moveBackground(scrollOffset, contentHeight, clientSize);
   handleWelcomeMsg(scrollOffset, welcomeState);
 }
