@@ -1,7 +1,9 @@
-export function generateStars(clientWidth, contentHeight) {
+export function generateStars(clientSize) {
   let stars = [];
 
-  const starCount = 0.00001 * (clientWidth * contentHeight);
+  const starCount = Math.floor(
+    0.00004 * (clientSize.width * clientSize.height),
+  );
 
   for (let i = 0; i < starCount; i++) {
     const star = document.createElement("div");
@@ -12,7 +14,7 @@ export function generateStars(clientWidth, contentHeight) {
     star.style.height = `${size}px`;
 
     const x = Math.random() * 100;
-    const y = Math.random() * contentHeight;
+    const y = Math.random() * clientSize.height * 2;
     star.style.left = `${x}%`;
     star.style.top = `${y}px`;
     star.style.animationDelay = `${Math.random() * 5}s`;

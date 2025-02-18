@@ -16,7 +16,7 @@ window.addEventListener("load", () => {
   let contentHeight = getContentHeight();
   onResize(clientSize, contentHeight, []);
 
-  const stars = generateStars(clientSize.width, contentHeight);
+  const stars = generateStars(clientSize);
 
   contentHeight = getContentHeight();
   onResize(clientSize, contentHeight, stars);

@@ -12,7 +12,7 @@ export function onResize(clientSize, contentHeight, stars) {
   moveBackground(
     document.getElementById("scroll-container").scrollTop,
     contentHeight,
-    clientSize.height,
+    clientSize,
     stars,
   );
 }
@@ -35,16 +35,15 @@ function moveScrollContent(
   crawl.style.top = `${top}vh`;
 }
 
-function moveBackground(scrollOffset, contentHeight, clientHeight, stars) {
-  const backgroundOffset = -(scrollOffset / contentHeight) * 800;
-  const starsOffset = 1.3 * backgroundOffset;
+function moveBackground(scrollOffset, contentHeight, clientSize, stars) {
+  const starsOffset = -(scrollOffset / contentHeight) * clientSize.height;
+  const backgroundOffset = starsOffset / 2;
 
   document.getElementById("background").style.backgroundPositionY =
     `${backgroundOffset}px`;
-  document.getElementById("star-container").style.top =
-    `${starsOffset}px`;
+  document.getElementById("star-container").style.top = `${starsOffset}px`;
 
-  updateStars(stars, starsOffset, clientHeight);
+  updateStars(stars, starsOffset, clientSize.height);
 }
 
 function updateStars(stars, starsOffset, clientHeight) {
@@ -104,6 +103,6 @@ export function onScroll(
     clientSize.width,
     contentHeight,
   );
-  moveBackground(scrollOffset, contentHeight, clientSize.height, stars);
+  moveBackground(scrollOffset, contentHeight, clientSize, stars);
   handleWelcomeMsg(scrollOffset, welcomeState);
 }
