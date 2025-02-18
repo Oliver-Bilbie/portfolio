@@ -45,7 +45,6 @@ export function getSectionPosition(sectionNumber) {
 export function setElementHeights(contentHeight, clientHeight) {
   let elementHeight = contentHeight + clientHeight;
   document.getElementById("scroll-body").style.height = `${elementHeight}px`;
-  document.getElementById("star-container").style.height = `${elementHeight}px`;
 }
 
 export function setIFrameSizes(clientSize) {

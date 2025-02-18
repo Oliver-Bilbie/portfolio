@@ -4,16 +4,14 @@ import {
   fadeInWelcomeText,
   fadeOutWelcomeText,
 } from "./dom.js";
-import { binarySearch } from "./utils.js";
 
-export function onResize(clientSize, contentHeight, stars) {
+export function onResize(clientSize, contentHeight) {
   setIFrameSizes(clientSize);
   setElementHeights(clientSize.height, contentHeight);
   moveBackground(
     document.getElementById("scroll-container").scrollTop,
     contentHeight,
     clientSize,
-    stars,
   );
 }
 
@@ -35,37 +33,13 @@ function moveScrollContent(
   crawl.style.top = `${top}vh`;
 }
 
-function moveBackground(scrollOffset, contentHeight, clientSize, stars) {
+function moveBackground(scrollOffset, contentHeight, clientSize) {
   const starsOffset = -(scrollOffset / contentHeight) * clientSize.height;
   const backgroundOffset = starsOffset / 2;
 
   document.getElementById("background").style.backgroundPositionY =
     `${backgroundOffset}px`;
   document.getElementById("star-container").style.top = `${starsOffset}px`;
-
-  updateStars(stars, starsOffset, clientSize.height);
-}
-
-function updateStars(stars, starsOffset, clientHeight) {
-  const viewportStart = -starsOffset;
-  const viewportEnd = viewportStart + clientHeight;
-
-  // Find the range of stars to display using binary search
-  const firstVisibleIndex = binarySearch(stars, viewportStart, false);
-  const lastVisibleIndex = binarySearch(stars, viewportEnd, true);
-
-  const starBody = document.getElementById("star-container");
-
-  stars.map((star, i) => {
-    const shouldExist = i >= firstVisibleIndex && i <= lastVisibleIndex;
-    const doesExist = star.element.parentNode;
-
-    if (shouldExist && !doesExist) {
-      starBody.appendChild(star.element);
-    } else if (!shouldExist && doesExist) {
-      starBody.removeChild(star.element);
-    }
-  });
 }
 
 function handleWelcomeMsg(scrollOffset, welcomeState) {
@@ -93,7 +67,6 @@ export function onScroll(
   perspective,
   clientSize,
   contentHeight,
-  stars,
   welcomeState,
 ) {
   moveScrollContent(
@@ -103,6 +76,6 @@ export function onScroll(
     clientSize.width,
     contentHeight,
   );
-  moveBackground(scrollOffset, contentHeight, clientSize, stars);
+  moveBackground(scrollOffset, contentHeight, clientSize);
   handleWelcomeMsg(scrollOffset, welcomeState);
 }

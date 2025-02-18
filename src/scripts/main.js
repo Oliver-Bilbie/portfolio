@@ -13,13 +13,12 @@ window.addEventListener("load", () => {
   const rotateX = 45;
 
   let clientSize = getClientSize();
+  generateStars(clientSize);
+
   let contentHeight = getContentHeight();
-  onResize(clientSize, contentHeight, []);
-
-  const stars = generateStars(clientSize);
-
+  onResize(clientSize, contentHeight);
   contentHeight = getContentHeight();
-  onResize(clientSize, contentHeight, stars);
+  onResize(clientSize, contentHeight);
 
   const welcomeState = new WelcomeState();
   fadeInWelcomeText(welcomeState);
@@ -34,7 +33,6 @@ window.addEventListener("load", () => {
         perspective,
         clientSize,
         contentHeight,
-        stars,
         welcomeState,
       );
     },
@@ -47,7 +45,7 @@ window.addEventListener("load", () => {
     () => {
       clientSize = getClientSize();
       contentHeight = getContentHeight();
-      onResize(clientSize, contentHeight, stars);
+      onResize(clientSize, contentHeight);
     },
     { passive: true },
   );
