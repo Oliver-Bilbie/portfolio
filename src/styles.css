@@ -13,6 +13,14 @@ iframe {
   border-radius: 2rem;
 }
 
+p {
+  font-size: clamp(40px, 8vw, 80px);
+}
+
+h1 {
+  font-size: clamp(50px, 10vw, 100px);
+}
+
 .title {
   margin-top: 400px;
 }
@@ -29,7 +37,6 @@ iframe {
   height: 100vh;
   color: #efc3f5;
   font-family: "Russo One", serif;
-  font-size: 400%;
   perspective: 800px;
   text-align: center;
   overflow: hidden;
