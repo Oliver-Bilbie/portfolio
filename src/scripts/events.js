@@ -1,26 +1,26 @@
 import {
   setIFrameSizes,
-  setElementHeights,
+  setScrollHeight,
   fadeInWelcomeText,
   fadeOutWelcomeText,
 } from "./dom.js";
 
 export function onResize(clientSize, contentHeight) {
   setIFrameSizes(clientSize);
-  setElementHeights(clientSize.height, contentHeight);
-  moveBackground(
+  setScrollHeight(clientSize.height, contentHeight);
+  scrollBackground(
     document.getElementById("scroll-container").scrollTop,
     contentHeight,
     clientSize,
   );
 }
 
-function moveScrollContent(scrollOffset, rotateX) {
+function scrollContent(scrollOffset, rotateX) {
   const crawl = document.getElementById("crawl");
   crawl.style.transform = `rotateX(${rotateX}deg) translateY(${-scrollOffset}px)`;
 }
 
-function moveBackground(scrollOffset, contentHeight, clientSize) {
+function scrollBackground(scrollOffset, contentHeight, clientSize) {
   const starsOffset = -(scrollOffset / contentHeight) * clientSize.height;
   const backgroundOffset = starsOffset / 2;
 
@@ -55,7 +55,7 @@ export function onScroll(
   contentHeight,
   welcomeState,
 ) {
-  moveScrollContent(scrollOffset, rotateX);
-  moveBackground(scrollOffset, contentHeight, clientSize);
+  scrollContent(scrollOffset, rotateX);
+  scrollBackground(scrollOffset, contentHeight, clientSize);
   handleWelcomeMsg(scrollOffset, welcomeState);
 }

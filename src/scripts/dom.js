@@ -42,9 +42,9 @@ export function getSectionPosition(sectionNumber) {
   return sectionPosition;
 }
 
-export function setElementHeights(contentHeight, clientHeight) {
-  let elementHeight = contentHeight + clientHeight;
-  document.getElementById("scroll-body").style.height = `${elementHeight}px`;
+export function setScrollHeight(clientHeight, contentHeight) {
+  const scrollHeight = contentHeight + 2 * clientHeight;
+  document.getElementById("scroll-body").style.height = `${scrollHeight}px`;
 }
 
 export function setIFrameSizes(clientSize) {
