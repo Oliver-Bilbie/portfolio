@@ -4,6 +4,7 @@ body {
   overflow: hidden;
   margin: 0;
   background: #000;
+  visibility: hidden;
 }
 
 iframe {
@@ -47,7 +48,6 @@ h1 {
   width: 100vw;
   top: 100vh;
   transform-origin: 50vw 15vh;
-  transform: rotateX(45deg);
 }
 
 #background {

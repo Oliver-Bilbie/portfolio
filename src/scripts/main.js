@@ -19,6 +19,8 @@ window.addEventListener("load", () => {
   contentHeight = getContentHeight();
   onResize(clientSize, contentHeight);
 
+  document.body.style.visibility = "visible";
+
   const welcomeState = new WelcomeState();
   fadeInWelcomeText(welcomeState);
 
