@@ -216,3 +216,21 @@ h1 {
 .extra-margin {
   margin-top: 40px;
 }
+
+.tech-container {
+  background-color: rgba(115, 83, 186, 0.5);
+  border: none;
+  border-radius: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  max-width: fit-content;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.tech-icon {
+  margin: 2rem;
+  width: clamp(32px, 9vw, 96px);
+  height: clamp(32px, 9vw, 96px);
+}
