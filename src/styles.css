@@ -15,11 +15,11 @@ iframe {
 }
 
 p {
-  font-size: clamp(40px, 8vw, 80px);
+  font-size: clamp(32px, 6vw, 80px);
 }
 
 h1 {
-  font-size: clamp(50px, 10vw, 100px);
+  font-size: clamp(48px, 9vw, 120px);
 }
 
 .title {
@@ -186,7 +186,7 @@ h1 {
 }
 
 .space-btn {
-  background-color: #7353ba;
+  background-color: rgba(115, 83, 186, 0.5);
   color: white;
   font-size: 1.5rem;
   font-weight: bold;
@@ -199,13 +199,13 @@ h1 {
   gap: 10px;
   cursor: pointer;
   transition: all 0.3s ease;
-  box-shadow: 0 4px 10px rgba(255, 255, 255, 0.2);
   pointer-events: all;
 }
 
 .space-btn:hover {
   background-color: #2f195f;
   transform: scale(1.05);
+  box-shadow: 0 4px 10px rgba(255, 255, 255, 0.2);
 }
 
 .space-btn img {
