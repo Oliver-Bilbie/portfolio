@@ -4,6 +4,10 @@ default: all
 
 all: terraform client
 
+update:
+	@echo "[INFO] Updating dependencies"
+	@npm update
+
 terraform:
 	@echo "[INFO] Deploying infrastructure"
 	@cd terraform && terraform init
@@ -24,3 +28,7 @@ client:
 	@echo "[INFO] Resetting CDN cache"
 	@aws cloudfront create-invalidation --distribution-id $(shell cd terraform && terraform output -raw cloudfront_distribution) --paths "/*"
 	@echo "[INFO] Client deployed 🚀"
+
+dev:
+	@echo "[INFO] Running local development server on 127.0.0.1:8080"
+	@npm start
