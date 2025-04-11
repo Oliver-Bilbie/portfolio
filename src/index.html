@@ -51,27 +51,27 @@
 
           <div class="button-grid centred">
             <button class="space-btn goto-section-2">
-              <img src="images/timer.png" />
+              <img src="images/timer.webp" />
               <span>Timer</span>
             </button>
             <button class="space-btn goto-section-3">
-              <img src="images/flights.png" />
+              <img src="images/flights.webp" />
               <span>Flights</span>
             </button>
             <button class="space-btn goto-section-4">
-              <img src="images/cycling.png" />
+              <img src="images/cycling.webp" />
               <span>Cycling</span>
             </button>
             <button class="space-btn goto-section-5">
-              <img src="images/words.png" />
+              <img src="images/words.webp" />
               <span>Words</span>
             </button>
             <button class="space-btn goto-section-6">
-              <img src="images/contact.png" />
+              <img src="images/contact.webp" />
               <span>Contact</span>
             </button>
             <button class="space-btn goto-section-7">
-              <img src="images/acknowledgements.png" />
+              <img src="images/acknowledgements.webp" />
               <span>Acknowledgements</span>
             </button>
           </div>
@@ -104,9 +104,14 @@
             Displayed times are generally within a tolerance of approximately
             one second, although this can be longer for slow connections.
           </p>
+          <p>
+            The front-end of this project is hosted from an S3 bucket behind a
+            CloudFront distribution, and the back-end is driven by Lambda
+            functions and API Gateway.
+          </p>
           <iframe src="https://timer.oliver-bilbie.co.uk"></iframe>
           <button class="space-btn centred goto-section-1 extra-margin">
-            <img src="images/rocket.png" />
+            <img src="images/rocket.webp" />
             <span>Back To Top</span>
           </button>
 
@@ -114,29 +119,35 @@
             <p>Section III</p>
             <h1>Flight Guesser</h1>
           </div>
+          <div class="tech-container">
+            <img class="tech-icon" src="images/react.svg" />
+            <img class="tech-icon" src="images/python.svg" />
+            <img class="tech-icon" src="images/aws.svg" />
+          </div>
           <p>
-            Barry, I told you, stop flying in the house! Hey, Adam. Hey, Barry.
-            Is that fuzz gel? A little. Special day, graduation. Never thought
-            I'd make it. Three days grade school, three days high school. Those
-            were awkward. Three days college. I'm glad I took a day and
-            hitchhiked around The Hive. You did come back different. Hi, Barry.
-            Artie, growing a mustache? Looks good. Hear about Frankie? Yeah. You
-            going to the funeral? No, I'm not going. Everybody knows, sting
-            someone, you die. Don't waste it on a squirrel. Such a hothead. I
-            guess he could have just gotten out of the way. I love this
-            incorporating an amusement park into our day. That's why we don't
-            need vacations. Boy, quite a bit of pomp under the circumstances.
-            Well, Adam, today we are men. We are! Bee-men. Amen! Hallelujah!
-            Students, faculty, distinguished bees, please welcome Dean Buzzwell.
-            Welcome, New Hive City graduating class of 9:15. That concludes our
-            ceremonies And begins your career at Honex Industries!
+            Flight Guesser is a game designed to be played when the player spots
+            an aircraft in the real world, where the objective is to guess where
+            the aircraft has come from and/or where it is heading. Points are
+            awarded based on proximity to the correct locations, based on data
+            sourced from the Flight Radar API.
+          </p>
+          <p>
+            The game has multiplayer functionality whereby a player can create a
+            multiplayer lobby and share the code with friends, which will allow
+            them to join the lobby. While in a multiplayer lobby, a real-time
+            leaderboard will be available.
+          </p>
+          <p>
+            The front-end of this project is hosted from an S3 bucket behind a
+            CloudFront distribution, and the back-end is driven by Lambda
+            functions and API Gateway.
           </p>
           <iframe
             src="https://flights.oliver-bilbie.co.uk"
             allow="geolocation 'self' https://flights.oliver-bilbie.co.uk"
           ></iframe>
           <button class="space-btn centred goto-section-1 extra-margin">
-            <img src="images/rocket.png" />
+            <img src="images/rocket.webp" />
             <span>Back To Top</span>
           </button>
 
@@ -144,23 +155,46 @@
             <p>Section IV</p>
             <h1>Exeter Cycling Club</h1>
           </div>
+          <div class="tech-container">
+            <img class="tech-icon" src="images/yew.svg" />
+            <img class="tech-icon" src="images/rust.svg" />
+            <img class="tech-icon" src="images/aws.svg" />
+          </div>
           <p>
-            Will we pick our job today? I heard it's just orientation. Heads up!
-            Here we go. Keep your hands and antennas inside the tram at all
-            times. Wonder what it'll be like? A little scary. Welcome to Honex,
-            a division of Honesco and a part of the Hexagon Group. This is it!
-            Wow. Wow. We know that you, as a bee, have worked your whole life to
-            get to the point where you can work for your whole life. Honey
-            begins when our valiant Pollen Jocks bring the nectar to The Hive.
-            Our top-secret formula is automatically color-corrected,
-            scent-adjusted and bubble-contoured into this soothing sweet syrup
-            with its distinctive golden glow you know as... Honey! That girl was
-            hot. She's my cousin! She is? Yes, we're all cousins. Right. You're
-            right.
+            This project is a website for my local road cycling club. As well as
+            providing access to general information about the club, the
+            application allows administrators to select a route for the week
+            which will be displayed on the website and emailed to the mailing
+            list.
+          </p>
+          <p>
+            Authentication is handled via Strava's OAuth2 implementation, where
+            only administrators' Strava accounts have permission to set and
+            update the route. Once authenticated, additional menus become
+            available which will display all of the user's Strava routes and
+            allow them to select one. A corresponding title and message can be
+            provided, which are displayed on both the website and the email
+            notifications. Club members can indicate whether they will be
+            attending using buttons in the email.
+          </p>
+          <p>
+            Since search-engine-optimization is important for this particular
+            project it is server-side-rendered. This is done using a serverless
+            architecture to keep hosting costs minimal. Everything is written in
+            Rust which keeps latency low compared to languages like JavaScript
+            since no runtime is required on the underlying server which allows
+            for quick cold-starts, as well as Rust generally being a fast
+            language.
+          </p>
+          <p>
+            The front-end of this project is rendered server-side in a Lambda
+            function behind a CloudFront distribution, and back-end
+            functionality is provided through Lambda functions behind an API
+            Gateway.
           </p>
           <iframe src="https://ecc.oliver-bilbie.co.uk"></iframe>
           <button class="space-btn centred goto-section-1 extra-margin">
-            <img src="images/rocket.png" />
+            <img src="images/rocket.webp" />
             <span>Back To Top</span>
           </button>
 
@@ -168,23 +202,27 @@
             <p>Section V</p>
             <h1>Learn Common Words</h1>
           </div>
+          <div class="tech-container">
+            <img class="tech-icon" src="images/yew.svg" />
+            <img class="tech-icon" src="images/rust.svg" />
+            <img class="tech-icon" src="images/aws.svg" />
+          </div>
           <p>
-            At Honex, we constantly strive to improve every aspect of bee
-            existence. These bees are stress-testing a new helmet technology.
-            What do you think he makes? Not enough. Here we have our latest
-            advancement, the Krelman. What does that do? Catches that little
-            strand of honey that hangs after you pour it. Saves us millions. Can
-            anyone work on the Krelman? Of course. Most bee jobs are small ones.
-            But bees know that every small job, if it's done well, means a lot.
-            But choose carefully because you'll stay in the job you pick for the
-            rest of your life. The same job the rest of your life? I didn't know
-            that. What's the difference? You'll be happy to know that bees, as a
-            species, haven't had one day off in 27 million years. So you'll just
-            work us to death? We'll sure try.
+            This project is a simple tool for learning foreign languages. Each
+            round the player is presented with a word in the source language,
+            and three words in the target language. The player must correctly
+            identify the corresponding word in the target language to score a
+            point. As the player progresses, more words are introduced until all
+            of the 1000 most common words are included.
+          </p>
+          <p>
+            The front-end of this project is hosted from an S3 bucket behind a
+            CloudFront distribution. All logic is handled in the client so there
+            is no need for any back-end services.
           </p>
           <iframe src="https://words.oliver-bilbie.co.uk"></iframe>
           <button class="space-btn centred goto-section-1 extra-margin">
-            <img src="images/rocket.png" />
+            <img src="images/rocket.webp" />
             <span>Back To Top</span>
           </button>
 
@@ -200,7 +238,7 @@
             authorities.
           </p>
           <button class="space-btn centred goto-section-1 extra-margin">
-            <img src="images/rocket.png" />
+            <img src="images/rocket.webp" />
             <span>Back To Top</span>
           </button>
 
@@ -256,7 +294,7 @@
           <!--   > -->
           <!-- </p> -->
           <button class="space-btn centred goto-section-1 extra-margin">
-            <img src="images/rocket.png" />
+            <img src="images/rocket.webp" />
             <span>Back To Top</span>
           </button>
         </div>
