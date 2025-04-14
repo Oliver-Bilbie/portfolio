@@ -51,20 +51,20 @@
 
           <div class="button-grid centred">
             <button class="space-btn goto-section-2">
-              <img src="images/timer.webp" />
-              <span>Timer</span>
+              <img src="images/cycling.webp" />
+              <span>Cycling</span>
             </button>
             <button class="space-btn goto-section-3">
               <img src="images/flights.webp" />
               <span>Flights</span>
             </button>
             <button class="space-btn goto-section-4">
-              <img src="images/cycling.webp" />
-              <span>Cycling</span>
-            </button>
-            <button class="space-btn goto-section-5">
               <img src="images/words.webp" />
               <span>Words</span>
+            </button>
+            <button class="space-btn goto-section-5">
+              <img src="images/timer.webp" />
+              <span>Timer</span>
             </button>
             <button class="space-btn goto-section-6">
               <img src="images/contact.webp" />
@@ -78,81 +78,6 @@
 
           <div id="section-2" class="title">
             <p>Section II</p>
-            <h1>Elapsed Time</h1>
-          </div>
-          <div class="tech-container">
-            <img class="tech-icon" src="images/javascript.svg" />
-            <img class="tech-icon" src="images/python.svg" />
-            <img class="tech-icon" src="images/aws.svg" />
-          </div>
-          <p>
-            The aim of this project is to synchronize a timer between a server
-            and all of its connected clients whilst using a minimal number of
-            requests.
-          </p>
-          <p>
-            The implementation is driven by websockets which are automatically
-            connected when a client is loaded. On connection, the websocket will
-            push the current elapsed time to the client. The client will use its
-            system clock to update the displayed value based on this offset.
-          </p>
-          <p>
-            Clicking the button will send a reset request to the server, which
-            will trigger the server to push a zero offset value to all connected
-            clients. Since the websockets will time-out and re-connect every
-            five minutes, the displayed time should not drift significantly.
-            Displayed times are generally within a tolerance of approximately
-            one second, although this can be longer for slow connections.
-          </p>
-          <p>
-            The front-end of this project is hosted from an S3 bucket behind a
-            CloudFront distribution, and the back-end is driven by Lambda
-            functions and API Gateway.
-          </p>
-          <iframe src="https://timer.oliver-bilbie.co.uk"></iframe>
-          <button class="space-btn centred goto-section-1 extra-margin">
-            <img src="images/rocket.webp" />
-            <span>Back To Top</span>
-          </button>
-
-          <div id="section-3" class="title">
-            <p>Section III</p>
-            <h1>Flight Guesser</h1>
-          </div>
-          <div class="tech-container">
-            <img class="tech-icon" src="images/react.svg" />
-            <img class="tech-icon" src="images/python.svg" />
-            <img class="tech-icon" src="images/aws.svg" />
-          </div>
-          <p>
-            Flight Guesser is a game designed to be played when the player spots
-            an aircraft in the real world, where the objective is to guess where
-            the aircraft has come from and/or where it is heading. Points are
-            awarded based on proximity to the correct locations, based on data
-            sourced from the Flight Radar API.
-          </p>
-          <p>
-            The game has multiplayer functionality whereby a player can create a
-            multiplayer lobby and share the code with friends, which will allow
-            them to join the lobby. While in a multiplayer lobby, a real-time
-            leaderboard will be available.
-          </p>
-          <p>
-            The front-end of this project is hosted from an S3 bucket behind a
-            CloudFront distribution, and the back-end is driven by Lambda
-            functions and API Gateway.
-          </p>
-          <iframe
-            src="https://flights.oliver-bilbie.co.uk"
-            allow="geolocation 'self' https://flights.oliver-bilbie.co.uk"
-          ></iframe>
-          <button class="space-btn centred goto-section-1 extra-margin">
-            <img src="images/rocket.webp" />
-            <span>Back To Top</span>
-          </button>
-
-          <div id="section-4" class="title">
-            <p>Section IV</p>
             <h1>Exeter Cycling Club</h1>
           </div>
           <div class="tech-container">
@@ -198,8 +123,44 @@
             <span>Back To Top</span>
           </button>
 
-          <div id="section-5" class="title">
-            <p>Section V</p>
+          <div id="section-3" class="title">
+            <p>Section III</p>
+            <h1>Flight Guesser</h1>
+          </div>
+          <div class="tech-container">
+            <img class="tech-icon" src="images/react.svg" />
+            <img class="tech-icon" src="images/python.svg" />
+            <img class="tech-icon" src="images/aws.svg" />
+          </div>
+          <p>
+            Flight Guesser is a game designed to be played when the player spots
+            an aircraft in the real world, where the objective is to guess where
+            the aircraft has come from and/or where it is heading. Points are
+            awarded based on proximity to the correct locations, based on data
+            sourced from the Flight Radar API.
+          </p>
+          <p>
+            The game has multiplayer functionality whereby a player can create a
+            multiplayer lobby and share the code with friends, which will allow
+            them to join the lobby. While in a multiplayer lobby, a real-time
+            leaderboard will be available.
+          </p>
+          <p>
+            The front-end of this project is hosted from an S3 bucket behind a
+            CloudFront distribution, and the back-end is driven by Lambda
+            functions and API Gateway.
+          </p>
+          <iframe
+            src="https://flights.oliver-bilbie.co.uk"
+            allow="geolocation 'self' https://flights.oliver-bilbie.co.uk"
+          ></iframe>
+          <button class="space-btn centred goto-section-1 extra-margin">
+            <img src="images/rocket.webp" />
+            <span>Back To Top</span>
+          </button>
+
+          <div id="section-4" class="title">
+            <p>Section IV</p>
             <h1>Learn Common Words</h1>
           </div>
           <div class="tech-container">
@@ -221,6 +182,45 @@
             is no need for any back-end services.
           </p>
           <iframe src="https://words.oliver-bilbie.co.uk"></iframe>
+          <button class="space-btn centred goto-section-1 extra-margin">
+            <img src="images/rocket.webp" />
+            <span>Back To Top</span>
+          </button>
+
+          <div id="section-5" class="title">
+            <p>Section V</p>
+            <h1>Elapsed Time</h1>
+          </div>
+          <div class="tech-container">
+            <img class="tech-icon" src="images/javascript.svg" />
+            <img class="tech-icon" src="images/python.svg" />
+            <img class="tech-icon" src="images/aws.svg" />
+          </div>
+          <p>
+            The aim of this project is to synchronize a timer between a server
+            and all of its connected clients whilst using a minimal number of
+            requests.
+          </p>
+          <p>
+            The implementation is driven by websockets which are automatically
+            connected when a client is loaded. On connection, the websocket will
+            push the current elapsed time to the client. The client will use its
+            system clock to update the displayed value based on this offset.
+          </p>
+          <p>
+            Clicking the button will send a reset request to the server, which
+            will trigger the server to push a zero offset value to all connected
+            clients. Since the websockets will time-out and re-connect every
+            five minutes, the displayed time should not drift significantly.
+            Displayed times are generally within a tolerance of approximately
+            one second, although this can be longer for slow connections.
+          </p>
+          <p>
+            The front-end of this project is hosted from an S3 bucket behind a
+            CloudFront distribution, and the back-end is driven by Lambda
+            functions and API Gateway.
+          </p>
+          <iframe src="https://timer.oliver-bilbie.co.uk"></iframe>
           <button class="space-btn centred goto-section-1 extra-margin">
             <img src="images/rocket.webp" />
             <span>Back To Top</span>
