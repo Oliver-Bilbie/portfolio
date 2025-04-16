@@ -15,6 +15,11 @@ terraform:
 	@echo "[INFO] Infrastructure deployed 🚀"
 
 build:
+	@if [ -z "$(MY_EMAIL)" ]; then \
+		echo "[ERROR] Environment variable MY_EMAIL must be set first"; \
+		exit 1; \
+	fi
+
 	@echo "[INFO] Installing dependencies"
 	@npm install
 
@@ -22,6 +27,7 @@ build:
 	@rm -rf ./build
 	@mkdir -p ./build
 	@cp -r ./src/* ./build
+	@sed -i 's|%MY_EMAIL%|$(MY_EMAIL)|g' ./build/index.html
 
 	@echo "[INFO] Minifying client files"
 	@find build -name "*.js" -type f | while read file; do \

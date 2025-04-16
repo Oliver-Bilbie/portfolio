@@ -4,7 +4,6 @@ body {
   overflow: hidden;
   margin: 0;
   background: #000;
-  visibility: hidden;
 }
 
 iframe {
@@ -14,8 +13,21 @@ iframe {
   border-radius: 2rem;
 }
 
-p {
+p,
+a {
   font-size: clamp(32px, 6vw, 80px);
+}
+
+a {
+  color: #c495ff;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  pointer-events: all;
+}
+
+a:hover {
+  color: #efc3f5;
+  text-shadow: 0 0 8px rgba(239, 195, 245, 0.7);
 }
 
 h1 {

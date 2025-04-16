@@ -3,10 +3,19 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Oliver Bilbie</title>
+
+    <title>Oliver Bilbie Portfolio</title>
+    <meta
+      name="description"
+      content="Software engineer from Exeter in the UK specializing in web development."
+    />
+    <meta
+      name="keywords"
+      content="oliver, bilbie, bible, blibie, software, engineering, development, programming"
+    />
+
     <link rel="stylesheet" href="styles.css" />
     <script defer src="scripts/main.js" type="module"></script>
-
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -14,7 +23,7 @@
       href="https://fonts.googleapis.com/css2?family=Russo+One&family=Space+Grotesk:wght@300..700&display=swap"
     />
   </head>
-  <body>
+  <body style="visibility: hidden">
     <div id="background">
       <div id="scroll-container">
         <div id="scroll-body"></div>
@@ -39,14 +48,15 @@
           </div>
           <p>
             Hi! My name is Ollie and I am a software engineer from Exeter in the
-            UK. I specialize in web-development and I am particularly interested
-            in writing fast code and architecting efficient applications.
+            UK. I specialize in web development and I am particularly interested
+            in writing performant code and designing efficient applications.
           </p>
           <p>
             This page is an overview of some of the projects I have worked on
             for fun over the past few years. All of the source code for these
-            applications is available on my GitHub along with some other bits
-            and pieces including the source code for this page.
+            applications is available on
+            <a href="https://github.com/Oliver-Bilbie">my GitHub</a> along with
+            some other bits and pieces, including the source code for this page.
           </p>
 
           <div class="button-grid centred">
@@ -59,20 +69,24 @@
               <span>Flights</span>
             </button>
             <button class="space-btn goto-section-4">
+              <img src="images/aoc.webp" />
+              <span>AoC</span>
+            </button>
+            <button class="space-btn goto-section-5">
               <img src="images/words.webp" />
               <span>Words</span>
             </button>
-            <button class="space-btn goto-section-5">
+            <button class="space-btn goto-section-6">
               <img src="images/timer.webp" />
               <span>Timer</span>
             </button>
-            <button class="space-btn goto-section-6">
+            <button class="space-btn goto-section-7">
               <img src="images/contact.webp" />
               <span>Contact</span>
             </button>
-            <button class="space-btn goto-section-7">
-              <img src="images/acknowledgements.webp" />
-              <span>Acknowledgements</span>
+            <button class="space-btn goto-section-8">
+              <img src="images/attributions.webp" />
+              <span>Attributions</span>
             </button>
           </div>
 
@@ -89,8 +103,8 @@
             This project is a website for my local road cycling club. As well as
             providing access to general information about the club, the
             application allows administrators to select a route for the week
-            which will be displayed on the website and emailed to the mailing
-            list.
+            which will be displayed on the website and sent via email to the
+            mailing list.
           </p>
           <p>
             Authentication is handled via Strava's OAuth2 implementation, where
@@ -108,14 +122,13 @@
             architecture to keep hosting costs minimal. Everything is written in
             Rust which keeps latency low compared to languages like JavaScript
             since no runtime is required on the underlying server which allows
-            for quick cold-starts, as well as Rust generally being a fast
-            language.
+            for quick cold-starts, as well as Rust generally being a better
+            performing language.
           </p>
           <p>
             The front-end of this project is rendered server-side in a Lambda
             function behind a CloudFront distribution, and back-end
-            functionality is provided through Lambda functions behind an API
-            Gateway.
+            functionality is provided by Lambda functions behind an API Gateway.
           </p>
           <iframe src="https://ecc.oliver-bilbie.co.uk"></iframe>
           <button class="space-btn centred goto-section-1 extra-margin">
@@ -140,10 +153,9 @@
             sourced from the Flight Radar API.
           </p>
           <p>
-            The game has multiplayer functionality whereby a player can create a
-            multiplayer lobby and share the code with friends, which will allow
-            them to join the lobby. While in a multiplayer lobby, a real-time
-            leaderboard will be available.
+            The game has multiplayer functionality; players can create a
+            multiplayer lobby and share a code for others to join. While in a
+            multiplayer lobby, a real-time leaderboard will be available.
           </p>
           <p>
             The front-end of this project is hosted from an S3 bucket behind a
@@ -161,6 +173,39 @@
 
           <div id="section-4" class="title">
             <p>Section IV</p>
+            <h1>Advent of Code</h1>
+          </div>
+          <div class="tech-container">
+            <img class="tech-icon" src="images/rust.svg" />
+          </div>
+          <p>
+            I have written solutions to some of
+            <a href="https://adventofcode.com/about"
+              >Eric Wastl's Advent of Code</a
+            >
+            programming challenges.
+          </p>
+          <p>
+            I have built a simple web application to make it easier to run my
+            solutions. The programs have been compiled into WebAssembly and will
+            run directly in the browser, which runs on all platforms and
+            provides near-native performance. The application uses a web worker
+            pattern to allow programs to be safely terminated early, as well as
+            to not block the main thread while they are running.
+          </p>
+          <p>
+            The front-end of this project is hosted from an S3 bucket behind a
+            CloudFront distribution. All logic is handled in the client so there
+            is no need for any back-end services.
+          </p>
+          <iframe src="https://aoc.oliver-bilbie.co.uk"></iframe>
+          <button class="space-btn centred goto-section-1 extra-margin">
+            <img src="images/rocket.webp" />
+            <span>Back To Top</span>
+          </button>
+
+          <div id="section-5" class="title">
+            <p>Section V</p>
             <h1>Learn Common Words</h1>
           </div>
           <div class="tech-container">
@@ -187,8 +232,8 @@
             <span>Back To Top</span>
           </button>
 
-          <div id="section-5" class="title">
-            <p>Section V</p>
+          <div id="section-6" class="title">
+            <p>Section VI</p>
             <h1>Elapsed Time</h1>
           </div>
           <div class="tech-container">
@@ -226,73 +271,40 @@
             <span>Back To Top</span>
           </button>
 
-          <div id="section-6" class="title">
-            <p>Section VI</p>
+          <div id="section-7" class="title">
+            <p>Section VII</p>
             <h1>Contact Me</h1>
           </div>
           <p>
-            It must be dangerous being a Pollen Jock. Yeah. Once a bear pinned
-            me against a mushroom! He had a paw on my throat, and with the
-            other, he was slapping me! Oh, my! I never thought I'd knock him
-            out. What were you doing during this? Trying to alert the
-            authorities.
+            Email:
+            <a href="mailto:%MY_EMAIL%">%MY_EMAIL%</a>
+          </p>
+          <p>
+            GitHub:
+            <a href="https://github.com/Oliver-Bilbie">Oliver-Bilbie</a>
+          </p>
+          <p>
+            LinkedIn:
+            <a href="https://www.linkedin.com/in/oliver-bilbie/"
+              >Oliver Bilbie</a
+            >
           </p>
           <button class="space-btn centred goto-section-1 extra-margin">
             <img src="images/rocket.webp" />
             <span>Back To Top</span>
           </button>
 
-          <div id="section-7" class="title">
-            <p>Section VII</p>
-            <h1>Acknowledgements</h1>
+          <div id="section-8" class="title">
+            <p>Section VIII</p>
+            <h1>Attributions</h1>
           </div>
           <p>
-            I can autograph that. A little gusty out there today, wasn't it,
-            comrades? Yeah. Gusty. We're hitting a sunflower patch six miles
-            from here tomorrow. Six miles, huh? Barry! A puddle jump for us, but
-            maybe you're not up for it. Maybe I am. You are not! We're going
-            0900 at J-Gate. What do you think, buzzy-boy? Are you bee enough? I
-            might be. It all depends on what 0900 means. Hey, Honex! Dad, you
-            surprised me.
+            Background image courtesy of
+            <a
+              href="https://science.nasa.gov/mission/hubble/multimedia/hubble-images/"
+              >NASA Hubble Space Telescope Gallery</a
+            >.
           </p>
-          <!-- <p>Acknowledge the font.</p> -->
-          <!-- <p> -->
-          <!--   Background image from NASA: -->
-          <!--   https://science.nasa.gov/mission/hubble/multimedia/hubble-images/ -->
-          <!-- </p> -->
-          <!-- <p>Icons:</p> -->
-          <!-- <p> -->
-          <!--   <a -->
-          <!--     href="https://www.flaticon.com/free-icons/time" -->
-          <!--     title="time icons" -->
-          <!--     >Time icons created by Freepik - Flaticon</a -->
-          <!--   > -->
-          <!--   <a -->
-          <!--     href="https://www.flaticon.com/free-icons/plane" -->
-          <!--     title="plane icons" -->
-          <!--     >Plane icons created by Freepik - Flaticon</a -->
-          <!--   > -->
-          <!--   <a -->
-          <!--     href="https://www.flaticon.com/free-icons/communication" -->
-          <!--     title="communication icons" -->
-          <!--     >Communication icons created by Vectors Market - Flaticon</a -->
-          <!--   > -->
-          <!--   <a -->
-          <!--     href="https://www.flaticon.com/free-icons/send" -->
-          <!--     title="send icons" -->
-          <!--     >Send icons created by Freepik - Flaticon</a -->
-          <!--   > -->
-          <!--   <a -->
-          <!--     href="https://www.flaticon.com/free-icons/medal" -->
-          <!--     title="medal icons" -->
-          <!--     >Medal icons created by Pixel Buddha - Flaticon</a -->
-          <!--   > -->
-          <!--   <a -->
-          <!--     href="https://www.flaticon.com/free-icons/launch" -->
-          <!--     title="launch icons" -->
-          <!--     >Launch icons created by Freepik - Flaticon</a -->
-          <!--   > -->
-          <!-- </p> -->
           <button class="space-btn centred goto-section-1 extra-margin">
             <img src="images/rocket.webp" />
             <span>Back To Top</span>
