@@ -14,14 +14,12 @@ window.addEventListener("load", () => {
   generateStars(clientSize);
 
   let elementPositions = getElementPositions();
-  onResize(clientSize, elementPositions.height);
+  onResize(clientSize, elementPositions);
 
   document.body.style.visibility = "visible";
 
   const welcomeState = new WelcomeState();
   fadeInWelcomeText(welcomeState);
-
-  const loadedIframes = [];
 
   // Handle scrolling
   document.getElementById("scroll-container").addEventListener(
@@ -31,10 +29,9 @@ window.addEventListener("load", () => {
         event.target.scrollTop,
         rotateX,
         clientSize,
-        elementPositions.height,
+        elementPositions,
         welcomeState,
       );
-      handleIframeVisibility(event.target.scrollTop);
     },
     { passive: true },
   );
@@ -45,10 +42,7 @@ window.addEventListener("load", () => {
     () => {
       clientSize = getClientSize();
       elementPositions = getElementPositions();
-      onResize(clientSize, elementPositions.height);
-      handleIframeVisibility(
-        document.getElementById("scroll-container").scrollTop,
-      );
+      onResize(clientSize, elementPositions);
     },
     { passive: true },
   );
@@ -64,30 +58,5 @@ window.addEventListener("load", () => {
           .scrollTo({ top: targetPosition, behavior: "smooth" });
       });
     });
-  }
-
-  function handleIframeVisibility(scrollTop) {
-    for (let i = 1; i <= 5; i++) {
-      const iframe = document.querySelector(`#lazy-iframe-${i}`);
-      if (!iframe) continue;
-
-      const isVisible =
-        scrollTop >
-          elementPositions[`iframe-${i}`].top - 2 * clientSize.height &&
-        scrollTop <
-          elementPositions[`iframe-${i}`].bottom + 3 * clientSize.height;
-
-      const isLoaded = loadedIframes[i] === true;
-
-      if (isVisible && !isLoaded) {
-        iframe.src = iframe.dataset.src;
-        iframe.style.opacity = 1;
-        loadedIframes[i] = true;
-      } else if (!isVisible && isLoaded) {
-        iframe.src = "";
-        iframe.style.opacity = 0;
-        loadedIframes[i] = false;
-      }
-    }
   }
 });

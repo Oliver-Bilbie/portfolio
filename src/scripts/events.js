@@ -3,14 +3,16 @@ import {
   fadeInWelcomeText,
   fadeOutWelcomeText,
 } from "./dom.js";
+import { handleIframeVisibility } from "./lazyIframes.js";
+import { debounce } from "./utils.js";
 
-export function onResize(clientSize, contentHeight) {
-  setScrollHeight(clientSize.height, contentHeight);
-  scrollBackground(
-    document.getElementById("scroll-container").scrollTop,
-    contentHeight,
-    clientSize,
-  );
+export const onResize = debounce(_onResize, 250);
+
+function _onResize(clientSize, elementPositions) {
+  let scrollTop = document.getElementById("scroll-container").scrollTop;
+  setScrollHeight(clientSize.height, elementPositions.height);
+  scrollBackground(scrollTop, elementPositions.height, clientSize);
+  handleIframeVisibility(scrollTop, clientSize, elementPositions);
 }
 
 function scrollContent(scrollOffset, rotateX) {
@@ -28,6 +30,10 @@ function scrollBackground(scrollOffset, contentHeight, clientSize) {
 }
 
 function handleWelcomeMsg(scrollOffset, welcomeState) {
+  if (!welcomeState.isVisible && scrollOffset > 2000) {
+    return false;
+  }
+
   const overlayStrength = Math.min(scrollOffset, 2000) / 2000;
   const overlayR = 47 * overlayStrength;
   const overlayG = 25 * overlayStrength;
@@ -50,10 +56,11 @@ export function onScroll(
   scrollOffset,
   rotateX,
   clientSize,
-  contentHeight,
+  elementPositions,
   welcomeState,
 ) {
   scrollContent(scrollOffset, rotateX);
-  scrollBackground(scrollOffset, contentHeight, clientSize);
+  scrollBackground(scrollOffset, elementPositions.height, clientSize);
   handleWelcomeMsg(scrollOffset, welcomeState);
+  handleIframeVisibility(scrollOffset, clientSize, elementPositions);
 }

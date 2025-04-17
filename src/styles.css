@@ -285,8 +285,12 @@ h1 {
   height: 100%;
   border: none;
   opacity: 0;
-  transition: opacity 0.3s ease;
+  transition: opacity 750ms ease-in-out;
   z-index: 1;
+}
+
+.responsive-iframe.visible {
+  opacity: 1;
 }
 
 .iframe-placeholder img {

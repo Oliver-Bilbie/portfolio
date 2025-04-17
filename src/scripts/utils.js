@@ -1,3 +1,13 @@
+export function debounce(func, timeout = 50) {
+  let timer;
+  return (...args) => {
+    clearTimeout(timer);
+    timer = setTimeout(() => {
+      func.apply(this, args);
+    }, timeout);
+  };
+}
+
 export function generateStars(clientSize) {
   const starCount = Math.floor((clientSize.width * clientSize.height) / 50000);
 
