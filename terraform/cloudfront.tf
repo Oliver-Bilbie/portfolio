@@ -2,7 +2,7 @@ resource "aws_cloudfront_distribution" "cdn" {
   enabled         = true
   is_ipv6_enabled = true
   price_class     = "PriceClass_100"
-  aliases         = [var.full_domain]
+  aliases         = [var.base_domain, var.full_domain, "www.${var.base_domain}"]
 
   origin {
     domain_name = aws_s3_bucket_website_configuration.host-bucket-hosting-config.website_endpoint
