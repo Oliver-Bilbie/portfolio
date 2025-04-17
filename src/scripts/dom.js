@@ -5,56 +5,69 @@ export function getClientSize() {
   };
 }
 
-export function getContentHeight() {
-  // Find the natural height of the content (if it were allowed to overflow)
-  // by creating an invisible clone.
+function withVirtualContent(fn, ...args) {
+  // Decorator function to create an invisible clone of the #content-container
+  // DOM element and expose it to an inner function
 
   const clone = document.getElementById("content-container").cloneNode(true);
   clone.style.position = "absolute";
   clone.style.visibility = "hidden";
   clone.style.height = "fit-content";
   clone.style.overflow = "visible";
+  Object.assign(clone.style, {
+    position: "absolute",
+    visibility: "hidden",
+    height: "fit-content",
+    overflow: "visible",
+    pointerEvents: "none",
+    zIndex: "-1",
+  });
   clone.querySelector("#crawl").style.position = "relative";
 
   document.body.appendChild(clone);
-  const contentHeight = clone.offsetHeight;
-  document.body.removeChild(clone);
 
-  return contentHeight;
+  let result;
+  try {
+    result = fn(clone, ...args);
+  } finally {
+    document.body.removeChild(clone);
+    return result;
+  }
 }
 
-export function getSectionPosition(sectionNumber) {
-  // Find the scroll amount required to reach a section by creating an invisible clone.
+export function getElementPositions() {
+  // Find the scroll amount required to reach all required elements
 
-  const clone = document.getElementById("content-container").cloneNode(true);
-  clone.style.position = "absolute";
-  clone.style.visibility = "hidden";
-  clone.style.height = "fit-content";
-  clone.style.overflow = "visible";
-  clone.querySelector("#crawl").style.position = "relative";
+  let _find_positions = (container) => {
+    let positions = {};
 
-  document.body.appendChild(clone);
-  const sectionPosition = clone.querySelector(
-    `#section-${sectionNumber}`,
-  ).offsetTop;
-  document.body.removeChild(clone);
+    positions.height = container.offsetHeight;
 
-  return sectionPosition;
+    // Find section positions
+    for (let i = 1; i <= 8; i++) {
+      positions[`section-${i}`] = container.querySelector(
+        `#section-${i}`,
+      ).offsetTop;
+    }
+
+    // Find iframe positions
+    for (let i = 1; i <= 5; i++) {
+      let element = container.querySelector(`#lazy-iframe-${i}`).parentElement;
+      positions[`iframe-${i}`] = {
+        top: element.offsetTop,
+        bottom: element.offsetTop + element.offsetHeight,
+      };
+    }
+
+    return positions;
+  };
+
+  return withVirtualContent(_find_positions);
 }
 
 export function setScrollHeight(clientHeight, contentHeight) {
   const scrollHeight = contentHeight + 2 * clientHeight;
   document.getElementById("scroll-body").style.height = `${scrollHeight}px`;
-}
-
-export function setIFrameSizes(clientSize) {
-  const iframeWidth = Math.min(clientSize.width * 0.9, 1600);
-  let iframeHeight = Math.max(iframeWidth * (9 / 16), 800);
-
-  document.querySelectorAll("iframe").forEach((iframe) => {
-    iframe.style.width = `${iframeWidth}px`;
-    iframe.style.height = `${iframeHeight}px`;
-  });
 }
 
 function fadeElement(element, fadeIn, timeSeconds) {

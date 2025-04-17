@@ -5,6 +5,10 @@
     "terser": "^5.37.0"
   },
   "scripts": {
-    "start": "http-server src/ -o -p 8080 -c-1"
+    "start": "http-server src/ -o -p 8080 -c-1",
+    "screenshot": "node generate-screenshots.js"
+  },
+  "dependencies": {
+    "puppeteer": "^24.6.1"
   }
 }

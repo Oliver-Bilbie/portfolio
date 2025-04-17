@@ -1,12 +1,10 @@
 import {
-  setIFrameSizes,
   setScrollHeight,
   fadeInWelcomeText,
   fadeOutWelcomeText,
 } from "./dom.js";
 
 export function onResize(clientSize, contentHeight) {
-  setIFrameSizes(clientSize);
   setScrollHeight(clientSize.height, contentHeight);
   scrollBackground(
     document.getElementById("scroll-container").scrollTop,

@@ -29,6 +29,9 @@ build:
 	@cp -r ./src/* ./build
 	@sed -i 's|%MY_EMAIL%|$(MY_EMAIL)|g' ./build/index.html
 
+	@echo "[INFO] Generating placeholder screenshots"
+	@npm run screenshot
+
 	@echo "[INFO] Minifying client files"
 	@find build -name "*.js" -type f | while read file; do \
 		npx terser "$$file" -o "$$file" -c -m; \
