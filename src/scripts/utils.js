@@ -8,6 +8,17 @@ export function debounce(func, timeout = 50) {
   };
 }
 
+export function throttle(fn, limit = 10) {
+  let lastCall = 0;
+  return function (...args) {
+    const now = Date.now();
+    if (now - lastCall >= limit) {
+      lastCall = now;
+      fn(...args);
+    }
+  };
+}
+
 export function generateStars(clientSize) {
   const starCount = Math.floor((clientSize.width * clientSize.height) / 50000);
 

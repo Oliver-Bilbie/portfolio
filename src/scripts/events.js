@@ -4,9 +4,9 @@ import {
   fadeOutWelcomeText,
 } from "./dom.js";
 import { handleIframeVisibility } from "./lazyIframes.js";
-import { debounce } from "./utils.js";
+import { throttle } from "./utils.js";
 
-export const onResize = debounce(_onResize, 250);
+export const onResize = throttle(_onResize, 100);
 
 function _onResize(clientSize, elementPositions) {
   let scrollTop = document.getElementById("scroll-container").scrollTop;
