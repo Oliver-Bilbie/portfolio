@@ -246,3 +246,16 @@ h1 {
   width: clamp(32px, 9vw, 96px);
   height: clamp(32px, 9vw, 96px);
 }
+
+.contact-item {
+  display: flex;
+  gap: 2em;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-bottom: 1em;
+}
+
+.contact-icon {
+  height: clamp(32px, 8vw, 96px);
+}
