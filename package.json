@@ -2,13 +2,11 @@
   "devDependencies": {
     "http-server": "^14.1.1",
     "prettier": "^3.4.2",
-    "terser": "^5.37.0"
+    "terser": "^5.37.0",
+    "puppeteer": "^24.6.1"
   },
   "scripts": {
     "start": "http-server src/ -o -p 8080 -c-1",
     "screenshot": "node generate-screenshots.js"
-  },
-  "dependencies": {
-    "puppeteer": "^24.6.1"
   }
 }
