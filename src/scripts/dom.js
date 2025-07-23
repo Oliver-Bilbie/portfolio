@@ -35,13 +35,15 @@ function withVirtualContent(fn, ...args) {
   }
 }
 
-export function getElementPositions() {
+export function getElementPositions(clientSize) {
   // Find the scroll amount required to reach all required elements
 
   let _find_positions = (container) => {
     let positions = {};
 
-    positions.height = container.offsetHeight;
+    // We add some extra height based on the client size to allow the content
+    // to scroll out of view at the bottom
+    positions.height = container.offsetHeight + 3 * clientSize.height;
 
     // Find section positions
     for (let i = 1; i <= 8; i++) {

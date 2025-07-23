@@ -13,7 +13,7 @@ window.addEventListener("load", () => {
   let clientSize = getClientSize();
   generateStars(clientSize);
 
-  let elementPositions = getElementPositions();
+  let elementPositions = getElementPositions(clientSize);
   onResize(clientSize, elementPositions);
 
   document.body.style.visibility = "visible";
@@ -41,7 +41,7 @@ window.addEventListener("load", () => {
     "resize",
     () => {
       clientSize = getClientSize();
-      elementPositions = getElementPositions();
+      elementPositions = getElementPositions(clientSize);
       onResize(clientSize, elementPositions);
     },
     { passive: true },
