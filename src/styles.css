@@ -233,6 +233,14 @@ h1 {
   height: 48px;
 }
 
+.text-btn {
+  cursor: pointer;
+  pointer-events: all;
+  background: none;
+  border: none;
+  font-family: "Russo One", serif;
+}
+
 .extra-margin {
   margin-top: 40px;
 }

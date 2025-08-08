@@ -59,4 +59,16 @@ window.addEventListener("load", () => {
       });
     });
   }
+
+  // Handle contact form buttons
+  document.querySelectorAll(".goto-contact-form").forEach((element) => {
+    element.addEventListener("click", () => {
+      const scrollContainer = document.getElementById("scroll-container");
+      scrollContainer.scrollTo({
+        top: scrollContainer.scrollHeight,
+        behavior: "smooth",
+      });
+      scrollContainer.style.overflow = "hidden";
+    });
+  });
 });
