@@ -10,7 +10,7 @@ iframe,
 .iframe-placeholder {
   pointer-events: all;
   overflow: hidden;
-  box-shadow: 0 20px 20px #7353ba;
+  box-shadow: 0 0 1rem #8f75c7;
   width: 90vw;
   max-width: 1600px;
   aspect-ratio: 16 / 9;
@@ -40,6 +40,14 @@ a:hover {
 
 h1 {
   font-size: clamp(48px, 9vw, 120px);
+}
+
+h2 {
+  font-size: clamp(38px, 7vw, 90px);
+}
+
+h3 {
+  font-size: clamp(28px, 5vw, 70px);
 }
 
 .title {
@@ -158,6 +166,10 @@ h1 {
   font-weight: lighter;
 }
 
+#message-input {
+  height: 32.3rem;
+}
+
 .star {
   position: absolute;
   border-radius: 50%;
@@ -233,6 +245,14 @@ h1 {
   height: 48px;
 }
 
+.text-btn {
+  cursor: pointer;
+  pointer-events: all;
+  background: none;
+  border: none;
+  font-family: "Russo One", serif;
+}
+
 .extra-margin {
   margin-top: 40px;
 }
@@ -257,15 +277,31 @@ h1 {
 
 .contact-item {
   display: flex;
-  gap: 2em;
+  gap: 2rem;
   align-items: center;
   justify-content: center;
   flex-wrap: wrap;
-  margin-bottom: 1em;
+  margin-top: -2rem;
+}
+
+.contact-form {
+  margin-top: 8rem;
+  margin-bottom: 8rem;
 }
 
 .contact-icon {
   height: clamp(32px, 8vw, 96px);
+}
+
+.form-input {
+  pointer-events: all;
+  font-size: clamp(26px, 5vw, 66px);
+  width: min(90vw, 1600px) !important;
+  box-shadow: 0 0 1rem #8f75c7;
+  border: none;
+  border-radius: 1rem;
+  padding: 1rem;
+  resize: none;
 }
 
 .iframe-container {
