@@ -2,7 +2,7 @@
 
 default: all
 
-all: terraform build deploy
+all: build-api terraform build-client deploy
 
 update:
 	@echo "[INFO] Updating dependencies"
@@ -14,12 +14,7 @@ terraform:
 	@cd terraform && terraform apply
 	@echo "[INFO] Infrastructure deployed 🚀"
 
-build:
-	@if [ -z "$(MY_EMAIL)" ]; then \
-		echo "[ERROR] Environment variable MY_EMAIL must be set first"; \
-		exit 1; \
-	fi
-
+build-client:
 	@echo "[INFO] Installing dependencies"
 	@npm install
 
@@ -30,7 +25,7 @@ build:
 	@rm -rf ./build
 	@mkdir -p ./build
 	@cp -r ./src/* ./build
-	@sed -i 's|%MY_EMAIL%|$(MY_EMAIL)|g' ./build/index.html
+-	@sed -i 's|%CONTACT_API%|$(shell cd terraform && terraform output -raw contact_api)|g' ./build/index.html
 
 	@echo "[INFO] Minifying client files"
 	@find build -name "*.js" -type f | while read file; do \
@@ -38,6 +33,11 @@ build:
 	done;
 
 	@echo "[INFO] Client has been built"
+
+build-api:
+	@echo "[INFO] Building API"
+	@cd api && cargo lambda build --release --output-format zip
+	@echo "[INFO] API has been built"
 
 deploy:
 	@echo "[INFO] Uploading client files"
