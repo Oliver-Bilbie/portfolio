@@ -47,9 +47,10 @@
             <h1>About Me</h1>
           </div>
           <p>
-            Hi! My name is Ollie and I am a software engineer living in Austin Texas.
-            I specialize in web development and I am particularly interested
-            in writing performant code and designing efficient applications.
+            Hi! My name is Ollie and I am a software engineer living in Austin
+            Texas. I specialize in web development and I am particularly
+            interested in writing performant code and designing efficient
+            applications.
           </p>
           <p>
             This page is an overview of some of the projects I have worked on
@@ -323,22 +324,44 @@
             <p>Section VII</p>
             <h1>Contact Me</h1>
           </div>
-          <div class="contact-item">
-            <img class="contact-icon" src="images/email.svg" />
-            <p>Email</p>
-            <a href="mailto:%MY_EMAIL%">%MY_EMAIL%</a>
+
+          <div id="contact-form">
+            <p>Email address</p>
+            <input
+                id="email-input"
+                class="form-input"
+                placeholder="Your email address"
+                type="text"
+            ></input>
+
+            <p>Message</p>
+            <textarea
+              id="message-input"
+              class="form-input"
+              placeholder="Type your message here"
+              type="text"
+            ></textarea>
+
+            <button id="send-button" class="space-btn centred extra-margin">
+              <img src="images/email.svg" />
+              <span>Send Email</span>
+            </button>
           </div>
+
+          <h2>You can also find me on</h2>
           <div class="contact-item">
             <img class="contact-icon" src="images/github.svg" />
-            <p>GitHub</p>
-            <a href="https://github.com/Oliver-Bilbie">Oliver-Bilbie</a>
+            <h3>GitHub:</h3>
+            <a href="https://github.com/Oliver-Bilbie">
+              <h3>Oliver-Bilbie</h3>
+            </a>
           </div>
           <div class="contact-item">
             <img class="contact-icon" src="images/linkedin.svg" />
-            <p>LinkedIn</p>
-            <a href="https://www.linkedin.com/in/oliver-bilbie/"
-              >Oliver Bilbie</a
-            >
+            <h3>LinkedIn:</h3>
+            <a href="https://www.linkedin.com/in/oliver-bilbie/">
+              <h3>Oliver Bilbie</h3>
+            </a>
           </div>
           <button class="space-btn centred goto-section-1 extra-margin">
             <img src="images/rocket.webp" />

@@ -1,7 +1,11 @@
+import { sendContactRequest } from "./api.js";
 import {
   getClientSize,
   fadeInWelcomeText,
   getElementPositions,
+  readContactForm,
+  handleContactResult,
+  handleContactLoading,
 } from "./dom.js";
 import { onResize, onScroll } from "./events.js";
 import { generateStars } from "./utils.js";
@@ -13,7 +17,7 @@ window.addEventListener("load", () => {
   let clientSize = getClientSize();
   generateStars(clientSize);
 
-  let elementPositions = getElementPositions();
+  let elementPositions = getElementPositions(clientSize);
   onResize(clientSize, elementPositions);
 
   document.body.style.visibility = "visible";
@@ -41,7 +45,7 @@ window.addEventListener("load", () => {
     "resize",
     () => {
       clientSize = getClientSize();
-      elementPositions = getElementPositions();
+      elementPositions = getElementPositions(clientSize);
       onResize(clientSize, elementPositions);
     },
     { passive: true },
@@ -59,4 +63,15 @@ window.addEventListener("load", () => {
       });
     });
   }
+
+  // Handle contact form button
+  document.getElementById("send-button").addEventListener("click", async () => {
+    const form_data = readContactForm();
+    handleContactLoading();
+    const response = await sendContactRequest(
+      form_data.email,
+      form_data.message,
+    );
+    handleContactResult(response);
+  });
 });

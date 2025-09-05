@@ -35,13 +35,15 @@ function withVirtualContent(fn, ...args) {
   }
 }
 
-export function getElementPositions() {
+export function getElementPositions(clientSize) {
   // Find the scroll amount required to reach all required elements
 
   let _find_positions = (container) => {
     let positions = {};
 
-    positions.height = container.offsetHeight;
+    // We add some extra height based on the client size to allow the content
+    // to scroll out of view at the bottom
+    positions.height = container.offsetHeight + 3 * clientSize.height;
 
     // Find section positions
     for (let i = 1; i <= 8; i++) {
@@ -101,4 +103,45 @@ export function fadeOutWelcomeText(welcomeState) {
 
     welcomeState.isVisible = false;
   }
+}
+
+export function readContactForm() {
+  const email = document.getElementById("email-input").value;
+  const message = document.getElementById("message-input").value;
+  return { email: email, message: message };
+}
+
+export function handleContactLoading() {
+  const form = document.getElementById("contact-form");
+
+  const spinner = document.createElement("div");
+  spinner.className = "loading-spinner";
+
+  const container = document.createElement("div");
+  container.className = "loading-spinner-container";
+
+  const img = document.createElement("img");
+  img.src = "images/rocket.webp";
+  img.alt = "Loading...";
+  img.className = "loading-spinner-image";
+
+  form.replaceChildren();
+  container.appendChild(img);
+  spinner.appendChild(container);
+  form.appendChild(spinner);
+}
+
+export function handleContactResult(result) {
+  const form = document.getElementById("contact-form");
+
+  const container = document.createElement("div");
+  container.className = "text-container";
+
+  const txt = document.createElement("h2");
+  txt.className = result.is_success ? "success-text" : "error-text";
+  txt.textContent = result.message;
+
+  form.replaceChildren();
+  container.appendChild(txt);
+  form.appendChild(container);
 }
