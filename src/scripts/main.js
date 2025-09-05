@@ -52,7 +52,7 @@ window.addEventListener("load", () => {
   );
 
   // Handle goto button clicks
-  for (let i = 1; i <= 8; i++) {
+  for (let i = 1; i <= 9; i++) {
     document.querySelectorAll(`.goto-section-${i}`).forEach((element) => {
       element.addEventListener("click", () => {
         const targetPosition =
@@ -74,4 +74,10 @@ window.addEventListener("load", () => {
     );
     handleContactResult(response);
   });
+
+  // Handle recursive iframes
+  const params = new URLSearchParams(window.location.search);
+  const depth = parseInt(params.get("depth") || "0", 10);
+  const recursive_iframe = document.getElementById("lazy-iframe-4");
+  recursive_iframe.dataset.src = `${recursive_iframe.dataset.src}?depth=${depth + 1}`;
 });

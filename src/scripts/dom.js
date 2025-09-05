@@ -46,14 +46,14 @@ export function getElementPositions(clientSize) {
     positions.height = container.offsetHeight + 3 * clientSize.height;
 
     // Find section positions
-    for (let i = 1; i <= 8; i++) {
+    for (let i = 1; i <= 9; i++) {
       positions[`section-${i}`] = container.querySelector(
         `#section-${i}`,
       ).offsetTop;
     }
 
     // Find iframe positions
-    for (let i = 1; i <= 5; i++) {
+    for (let i = 1; i <= 6; i++) {
       let element = container.querySelector(`#lazy-iframe-${i}`).parentElement;
       positions[`iframe-${i}`] = {
         top: element.offsetTop,

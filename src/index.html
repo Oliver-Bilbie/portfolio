@@ -7,15 +7,15 @@
     <title>Oliver Bilbie - Portfolio</title>
     <meta
       name="description"
-      content="Software engineer from Austin TX specializing in web development."
+      content="Software engineer in Austin TX specializing in web development."
     />
     <meta
       name="keywords"
-      content="oliver, bilbie, bible, blibie, software, engineering, development, programming"
+      content="oliver, bilbie, bible, blibie, software, engineer, developer, dev, programmer, code, tech"
     />
 
-    <link rel="stylesheet" href="styles.css" />
-    <script defer src="scripts/main.js" type="module"></script>
+    <link rel="stylesheet" href="/styles.css" />
+    <script defer src="/scripts/main.js" type="module"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -49,12 +49,12 @@
           <p>
             Hi! My name is Ollie and I am a software engineer living in Austin
             Texas. I specialize in web development and I am particularly
-            interested in writing performant code and designing efficient
+            interested in writing performant code and architecting efficient
             applications.
           </p>
           <p>
-            This page is an overview of some of the projects I have worked on
-            for fun over the past few years. All of the source code for these
+            This page is a showcase of some of the projects I have worked on for
+            fun over the past few years. All of the source code for these
             applications is available on
             <a href="https://github.com/Oliver-Bilbie">my GitHub</a> along with
             some other bits and pieces, including the source code for this page.
@@ -62,50 +62,103 @@
 
           <div class="button-grid centred">
             <button class="space-btn goto-section-2">
-              <img src="images/cycling.webp" />
-              <span>Cycling</span>
-            </button>
-            <button class="space-btn goto-section-3">
-              <img src="images/flights.webp" />
+              <img src="/images/flights.webp" />
               <span>Flights</span>
             </button>
+            <button class="space-btn goto-section-3">
+              <img src="/images/cycling.webp" />
+              <span>Cycling</span>
+            </button>
             <button class="space-btn goto-section-4">
-              <img src="images/aoc.webp" />
+              <img src="/images/aoc.webp" />
               <span>AoC</span>
             </button>
             <button class="space-btn goto-section-5">
-              <img src="images/words.webp" />
-              <span>Words</span>
+              <img src="/images/portfolio.webp" />
+              <span>Portfolio</span>
             </button>
             <button class="space-btn goto-section-6">
-              <img src="images/timer.webp" />
-              <span>Timer</span>
+              <img src="/images/words.webp" />
+              <span>Words</span>
             </button>
             <button class="space-btn goto-section-7">
-              <img src="images/contact.webp" />
-              <span>Contact</span>
+              <img src="/images/timer.webp" />
+              <span>Timer</span>
             </button>
             <button class="space-btn goto-section-8">
-              <img src="images/attributions.webp" />
+              <img src="/images/contact.webp" />
+              <span>Contact</span>
+            </button>
+            <button class="space-btn goto-section-9">
+              <img src="/images/attributions.webp" />
               <span>Attributions</span>
             </button>
           </div>
 
           <div id="section-2" class="title">
             <p>Section II</p>
+            <h1>Flight Guesser</h1>
+          </div>
+          <div class="tech-container">
+            <img class="tech-icon" src="/images/react.svg" />
+            <img class="tech-icon" src="/images/python.svg" />
+            <img class="tech-icon" src="/images/aws.svg" />
+          </div>
+          <p>
+            Flight Guesser is a game designed to be played when the player spots
+            an aircraft in the real world, where the objective is to guess where
+            the aircraft has come from and/or where it is heading. Points are
+            awarded based on proximity to the correct locations, based on data
+            sourced from Flight Radar. The game has multiplayer functionality
+            where players can create a multiplayer lobby and share a code for
+            others to join. While in a multiplayer lobby, a real-time
+            leaderboard will be available.
+          </p>
+          <p>
+            The interface for this project is a single-page application written
+            in React and hosted from an AWS S3 bucket. I decided to try out
+            Zustand to manage the application state in this project, which I
+            found to be a more ergonomic approach in this situation.
+          </p>
+          <p>
+            To keep server costs minimal, the APIs use AWS Lambda to execute
+            code. The APIs are written in Python and are exposed through an API
+            Gateway. The multiplayer API makes use of WebSocket connections to
+            allow for real-time scoreboard updates to be pushed from the server
+            to the client.
+          </p>
+          <div class="iframe-container">
+            <div class="iframe-placeholder">
+              <img src="/images/placeholders/iframe-preview-flights.webp" />
+            </div>
+            <iframe
+              title="Flight Guesser"
+              data-src="https://flights.oliver-bilbie.co.uk"
+              allow="geolocation 'self' https://flights.oliver-bilbie.co.uk"
+              id="lazy-iframe-1"
+              class="responsive-iframe"
+            ></iframe>
+          </div>
+          <button class="space-btn centred goto-section-1 extra-margin">
+            <img src="/images/rocket.webp" />
+            <span>Back To Top</span>
+          </button>
+
+          <div id="section-3" class="title">
+            <p>Section III</p>
             <h1>Exeter Cycling Club</h1>
           </div>
           <div class="tech-container">
-            <img class="tech-icon" src="images/yew.svg" />
-            <img class="tech-icon" src="images/rust.svg" />
-            <img class="tech-icon" src="images/aws.svg" />
+            <img class="tech-icon" src="/images/yew.svg" />
+            <img class="tech-icon" src="/images/rust.svg" />
+            <img class="tech-icon" src="/images/aws.svg" />
           </div>
           <p>
-            This project is a website for my local road cycling club. As well as
-            providing access to general information about the club, the
-            application allows administrators to select a route for the week
-            which will be displayed on the website and sent via email to the
-            mailing list.
+            This project is a prototype website for my local road cycling club
+            which is not currently in use. As well as providing access to
+            general information about the club, the application allows
+            administrators to select a route for the week which will be
+            displayed on the website and sent via email to the mailing list.
           </p>
           <p>
             Authentication is handled via Strava's OAuth2 implementation, where
@@ -115,78 +168,38 @@
             allow them to select one. A corresponding title and message can be
             provided, which are displayed on both the website and the email
             notifications. Club members can indicate whether they will be
-            attending using buttons in the email.
+            attending the ride using buttons in the email.
           </p>
           <p>
             Since search-engine-optimization is important for this particular
-            project it is server-side-rendered. This is done using a serverless
-            architecture to keep hosting costs minimal. Everything is written in
-            Rust which keeps latency low compared to languages like JavaScript
-            since no runtime is required on the underlying server which allows
-            for quick cold-starts, as well as Rust generally being a better
-            performing language.
+            project, the user interface is server-side-rendered. I decided to
+            try out Yew for this project, which is sort of like a React
+            equivalent for Rust which compiles to WebAssembly. By wrapping the
+            server-side rendering logic in an Axum HTTP server, I was able to
+            get it to run inside of an AWS Lambda function. This architecture
+            allows for reasonably fast page load times while keeping server
+            costs minimal.
           </p>
           <p>
-            The front-end of this project is rendered server-side in a Lambda
-            function behind a CloudFront distribution, and back-end
-            functionality is provided by Lambda functions behind an API Gateway.
+            The APIs for the application are written in Rust and executed using
+            AWS Lambda. The mailing list is stored in DynamoDB, which is a
+            decision made primarily to minimize server costs. Other data items
+            such as the currently selected route are stored as SSM parameters so
+            that they may be updated without needing to rebuild the back-end.
           </p>
           <div class="iframe-container">
             <div class="iframe-placeholder">
-              <img src="images/placeholders/iframe-preview-1.webp" />
+              <img src="/images/placeholders/iframe-preview-ecc.webp" />
             </div>
             <iframe
               title="Exeter Cycling Club"
               data-src="https://ecc.oliver-bilbie.co.uk"
-              id="lazy-iframe-1"
-              class="responsive-iframe"
-            ></iframe>
-          </div>
-          <button class="space-btn centred goto-section-1 extra-margin">
-            <img src="images/rocket.webp" />
-            <span>Back To Top</span>
-          </button>
-
-          <div id="section-3" class="title">
-            <p>Section III</p>
-            <h1>Flight Guesser</h1>
-          </div>
-          <div class="tech-container">
-            <img class="tech-icon" src="images/react.svg" />
-            <img class="tech-icon" src="images/python.svg" />
-            <img class="tech-icon" src="images/aws.svg" />
-          </div>
-          <p>
-            Flight Guesser is a game designed to be played when the player spots
-            an aircraft in the real world, where the objective is to guess where
-            the aircraft has come from and/or where it is heading. Points are
-            awarded based on proximity to the correct locations, based on data
-            sourced from the Flight Radar API.
-          </p>
-          <p>
-            The game has multiplayer functionality; players can create a
-            multiplayer lobby and share a code for others to join. While in a
-            multiplayer lobby, a real-time leaderboard will be available.
-          </p>
-          <p>
-            The front-end of this project is hosted from an S3 bucket behind a
-            CloudFront distribution, and the back-end is driven by Lambda
-            functions and API Gateway.
-          </p>
-          <div class="iframe-container">
-            <div class="iframe-placeholder">
-              <img src="images/placeholders/iframe-preview-2.webp" />
-            </div>
-            <iframe
-              title="Flight Guesser"
-              data-src="https://flights.oliver-bilbie.co.uk"
-              allow="geolocation 'self' https://flights.oliver-bilbie.co.uk"
               id="lazy-iframe-2"
               class="responsive-iframe"
             ></iframe>
           </div>
           <button class="space-btn centred goto-section-1 extra-margin">
-            <img src="images/rocket.webp" />
+            <img src="/images/rocket.webp" />
             <span>Back To Top</span>
           </button>
 
@@ -195,22 +208,24 @@
             <h1>Advent of Code</h1>
           </div>
           <div class="tech-container">
-            <img class="tech-icon" src="images/rust.svg" />
+            <img class="tech-icon" src="/images/rust.svg" />
           </div>
           <p>
-            I have written solutions to some of
+            For the last few years I have attempted
             <a href="https://adventofcode.com/about"
               >Eric Wastl's Advent of Code</a
             >
-            programming challenges.
+            programming challenges, inevitably falling off once my festive
+            responsibilities start consuming too much time!
           </p>
           <p>
-            I have built a simple web application to make it easier to run my
-            solutions. The programs have been compiled into WebAssembly and will
-            run directly in the browser, which runs on all platforms and
-            provides near-native performance. The application uses a web worker
-            pattern to allow programs to be safely terminated early, as well as
-            to not block the main thread while they are running.
+            In order to make this more visual and interactive, I have hacked
+            together a web application to make it easier to run my solutions. My
+            solutions have been compiled into WebAssembly and will run directly
+            in the browser, which works on all platforms and provides
+            near-native performance. The application uses a web worker pattern
+            to allow programs to be safely terminated early, as well as to not
+            block the main thread while they are running.
           </p>
           <p>
             The front-end of this project is hosted from an S3 bucket behind a
@@ -219,7 +234,7 @@
           </p>
           <div class="iframe-container">
             <div class="iframe-placeholder">
-              <img src="images/placeholders/iframe-preview-3.webp" />
+              <img src="/images/placeholders/iframe-preview-aoc.webp" />
             </div>
             <iframe
               title="Advent of Code"
@@ -229,18 +244,58 @@
             ></iframe>
           </div>
           <button class="space-btn centred goto-section-1 extra-margin">
-            <img src="images/rocket.webp" />
+            <img src="/images/rocket.webp" />
             <span>Back To Top</span>
           </button>
 
           <div id="section-5" class="title">
             <p>Section V</p>
+            <h1>Portfolio</h1>
+          </div>
+          <div class="tech-container">
+            <img class="tech-icon" src="/images/javascript.svg" />
+          </div>
+          <p>
+            This portfolio page was written in plain JavaScript, making use of a
+            3D scrolling effect and twinkling stars to achieve a science-fiction
+            look. The page also features a custom lazy-loading mechanism for
+            iframes which only loads the embedded content when it is in view.
+          </p>
+          <p>
+            The page also includes a contact form to avoid exposing my email
+            address to scrapers. This is handled by an AWS Lambda function
+            exposed via an API Gateway which uses SES to send emails.
+          </p>
+          <p>
+            Browser-imposed recursion limits have been circumvented by passing
+            an incrementing depth parameter to the embedded portfolio pages.
+            Firefox does not handle this very well, so I recommend using a
+            Chromium-based browser if you want to play around with recursion.
+          </p>
+          <div class="iframe-container">
+            <div class="iframe-placeholder">
+              <img src="/images/placeholders/iframe-preview-portfolio.webp" />
+            </div>
+            <iframe
+              title="Portfolio"
+              data-src="https://portfolio.oliver-bilbie.co.uk"
+              id="lazy-iframe-4"
+              class="responsive-iframe"
+            ></iframe>
+          </div>
+          <button class="space-btn centred goto-section-1 extra-margin">
+            <img src="/images/rocket.webp" />
+            <span>Back To Top</span>
+          </button>
+
+          <div id="section-6" class="title">
+            <p>Section VI</p>
             <h1>Learn Common Words</h1>
           </div>
           <div class="tech-container">
-            <img class="tech-icon" src="images/yew.svg" />
-            <img class="tech-icon" src="images/rust.svg" />
-            <img class="tech-icon" src="images/aws.svg" />
+            <img class="tech-icon" src="/images/yew.svg" />
+            <img class="tech-icon" src="/images/rust.svg" />
+            <img class="tech-icon" src="/images/aws.svg" />
           </div>
           <p>
             This project is a simple tool for learning foreign languages. Each
@@ -251,34 +306,36 @@
             of the 1000 most common words are included.
           </p>
           <p>
-            The front-end of this project is hosted from an S3 bucket behind a
-            CloudFront distribution. All logic is handled in the client so there
-            is no need for any back-end services.
+            This project was a first attempt to familiarize myself with Yew
+            before taking on something bigger. The front-end of this project is
+            hosted from an S3 bucket behind a CloudFront distribution. All logic
+            is handled in the client so there is no need for any back-end
+            services.
           </p>
           <div class="iframe-container">
             <div class="iframe-placeholder">
-              <img src="images/placeholders/iframe-preview-4.webp" />
+              <img src="/images/placeholders/iframe-preview-words.webp" />
             </div>
             <iframe
               title="Learn Common Words"
               data-src="https://words.oliver-bilbie.co.uk"
-              id="lazy-iframe-4"
+              id="lazy-iframe-5"
               class="responsive-iframe"
             ></iframe>
           </div>
           <button class="space-btn centred goto-section-1 extra-margin">
-            <img src="images/rocket.webp" />
+            <img src="/images/rocket.webp" />
             <span>Back To Top</span>
           </button>
 
-          <div id="section-6" class="title">
-            <p>Section VI</p>
+          <div id="section-7" class="title">
+            <p>Section VII</p>
             <h1>Elapsed Time</h1>
           </div>
           <div class="tech-container">
-            <img class="tech-icon" src="images/javascript.svg" />
-            <img class="tech-icon" src="images/python.svg" />
-            <img class="tech-icon" src="images/aws.svg" />
+            <img class="tech-icon" src="/images/javascript.svg" />
+            <img class="tech-icon" src="/images/python.svg" />
+            <img class="tech-icon" src="/images/aws.svg" />
           </div>
           <p>
             The aim of this project is to synchronize a timer between a server
@@ -300,39 +357,39 @@
             one second, although this can be longer for slow connections.
           </p>
           <p>
-            The front-end of this project is hosted from an S3 bucket behind a
-            CloudFront distribution, and the back-end is driven by Lambda
-            functions and API Gateway.
+            This project was a proof of concept for using WebSockets with AWS
+            Lambda functions through an API Gateway, which I later used in my
+            Flight Guesser project.
           </p>
           <div class="iframe-container">
             <div class="iframe-placeholder">
-              <img src="images/placeholders/iframe-preview-5.webp" />
+              <img src="/images/placeholders/iframe-preview-timer.webp" />
             </div>
             <iframe
               title="Elapsed Time"
               data-src="https://timer.oliver-bilbie.co.uk"
-              id="lazy-iframe-5"
+              id="lazy-iframe-6"
               class="responsive-iframe"
             ></iframe>
           </div>
           <button class="space-btn centred goto-section-1 extra-margin">
-            <img src="images/rocket.webp" />
+            <img src="/images/rocket.webp" />
             <span>Back To Top</span>
           </button>
 
-          <div id="section-7" class="title">
-            <p>Section VII</p>
+          <div id="section-8" class="title">
+            <p>Section VIII</p>
             <h1>Contact Me</h1>
           </div>
 
           <div id="contact-form">
             <p>Email address</p>
             <input
-                id="email-input"
-                class="form-input"
-                placeholder="Your email address"
-                type="text"
-            ></input>
+              id="email-input"
+              class="form-input"
+              placeholder="Your email address"
+              type="text"
+            />
 
             <p>Message</p>
             <textarea
@@ -343,33 +400,33 @@
             ></textarea>
 
             <button id="send-button" class="space-btn centred extra-margin">
-              <img src="images/email.svg" />
+              <img src="/images/email.svg" />
               <span>Send Email</span>
             </button>
           </div>
 
           <h2>You can also find me on</h2>
           <div class="contact-item">
-            <img class="contact-icon" src="images/github.svg" />
+            <img class="contact-icon" src="/images/github.svg" />
             <h3>GitHub:</h3>
             <a href="https://github.com/Oliver-Bilbie">
               <h3>Oliver-Bilbie</h3>
             </a>
           </div>
           <div class="contact-item">
-            <img class="contact-icon" src="images/linkedin.svg" />
+            <img class="contact-icon" src="/images/linkedin.svg" />
             <h3>LinkedIn:</h3>
             <a href="https://www.linkedin.com/in/oliver-bilbie/">
               <h3>Oliver Bilbie</h3>
             </a>
           </div>
           <button class="space-btn centred goto-section-1 extra-margin">
-            <img src="images/rocket.webp" />
+            <img src="/images/rocket.webp" />
             <span>Back To Top</span>
           </button>
 
-          <div id="section-8" class="title">
-            <p>Section VIII</p>
+          <div id="section-9" class="title">
+            <p>Section IX</p>
             <h1>Attributions</h1>
           </div>
           <p>
@@ -380,7 +437,7 @@
             >.
           </p>
           <button class="space-btn centred goto-section-1 extra-margin">
-            <img src="images/rocket.webp" />
+            <img src="/images/rocket.webp" />
             <span>Back To Top</span>
           </button>
         </div>

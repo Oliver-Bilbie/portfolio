@@ -6,27 +6,32 @@ const iframes = [
   {
     id: 1,
     url: "https://ecc.oliver-bilbie.co.uk",
-    name: "iframe-preview-1.webp",
+    name: "iframe-preview-ecc.webp",
   },
   {
     id: 2,
     url: "https://flights.oliver-bilbie.co.uk",
-    name: "iframe-preview-2.webp",
+    name: "iframe-preview-flights.webp",
   },
   {
     id: 3,
     url: "https://aoc.oliver-bilbie.co.uk",
-    name: "iframe-preview-3.webp",
+    name: "iframe-preview-aoc.webp",
   },
   {
     id: 4,
-    url: "https://words.oliver-bilbie.co.uk",
-    name: "iframe-preview-4.webp",
+    url: "https://portfolio.oliver-bilbie.co.uk",
+    name: "iframe-preview-portfolio.webp",
   },
   {
     id: 5,
+    url: "https://words.oliver-bilbie.co.uk",
+    name: "iframe-preview-words.webp",
+  },
+  {
+    id: 6,
     url: "https://timer.oliver-bilbie.co.uk",
-    name: "iframe-preview-5.webp",
+    name: "iframe-preview-timer.webp",
   },
 ];
 
