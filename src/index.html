@@ -7,11 +7,11 @@
     <title>Oliver Bilbie - Portfolio</title>
     <meta
       name="description"
-      content="Software engineer from Austin TX specializing in web development."
+      content="Software engineer in Austin TX specializing in web development."
     />
     <meta
       name="keywords"
-      content="oliver, bilbie, bible, blibie, software, engineering, development, programming"
+      content="oliver, bilbie, bible, blibie, software, engineer, developer, dev, programmer, code, tech"
     />
 
     <link rel="stylesheet" href="styles.css" />
@@ -49,12 +49,12 @@
           <p>
             Hi! My name is Ollie and I am a software engineer living in Austin
             Texas. I specialize in web development and I am particularly
-            interested in writing performant code and designing efficient
+            interested in writing performant code and architecting efficient
             applications.
           </p>
           <p>
-            This page is an overview of some of the projects I have worked on
-            for fun over the past few years. All of the source code for these
+            This page is a showcase of some of the projects I have worked on for
+            fun over the past few years. All of the source code for these
             applications is available on
             <a href="https://github.com/Oliver-Bilbie">my GitHub</a> along with
             some other bits and pieces, including the source code for this page.
@@ -62,12 +62,12 @@
 
           <div class="button-grid centred">
             <button class="space-btn goto-section-2">
-              <img src="images/cycling.webp" />
-              <span>Cycling</span>
-            </button>
-            <button class="space-btn goto-section-3">
               <img src="images/flights.webp" />
               <span>Flights</span>
+            </button>
+            <button class="space-btn goto-section-3">
+              <img src="images/cycling.webp" />
+              <span>Cycling</span>
             </button>
             <button class="space-btn goto-section-4">
               <img src="images/aoc.webp" />
@@ -93,62 +93,6 @@
 
           <div id="section-2" class="title">
             <p>Section II</p>
-            <h1>Exeter Cycling Club</h1>
-          </div>
-          <div class="tech-container">
-            <img class="tech-icon" src="images/yew.svg" />
-            <img class="tech-icon" src="images/rust.svg" />
-            <img class="tech-icon" src="images/aws.svg" />
-          </div>
-          <p>
-            This project is a website for my local road cycling club. As well as
-            providing access to general information about the club, the
-            application allows administrators to select a route for the week
-            which will be displayed on the website and sent via email to the
-            mailing list.
-          </p>
-          <p>
-            Authentication is handled via Strava's OAuth2 implementation, where
-            only administrators' Strava accounts have permission to set and
-            update the route. Once authenticated, additional menus become
-            available which will display all of the user's Strava routes and
-            allow them to select one. A corresponding title and message can be
-            provided, which are displayed on both the website and the email
-            notifications. Club members can indicate whether they will be
-            attending using buttons in the email.
-          </p>
-          <p>
-            Since search-engine-optimization is important for this particular
-            project it is server-side-rendered. This is done using a serverless
-            architecture to keep hosting costs minimal. Everything is written in
-            Rust which keeps latency low compared to languages like JavaScript
-            since no runtime is required on the underlying server which allows
-            for quick cold-starts, as well as Rust generally being a better
-            performing language.
-          </p>
-          <p>
-            The front-end of this project is rendered server-side in a Lambda
-            function behind a CloudFront distribution, and back-end
-            functionality is provided by Lambda functions behind an API Gateway.
-          </p>
-          <div class="iframe-container">
-            <div class="iframe-placeholder">
-              <img src="images/placeholders/iframe-preview-1.webp" />
-            </div>
-            <iframe
-              title="Exeter Cycling Club"
-              data-src="https://ecc.oliver-bilbie.co.uk"
-              id="lazy-iframe-1"
-              class="responsive-iframe"
-            ></iframe>
-          </div>
-          <button class="space-btn centred goto-section-1 extra-margin">
-            <img src="images/rocket.webp" />
-            <span>Back To Top</span>
-          </button>
-
-          <div id="section-3" class="title">
-            <p>Section III</p>
             <h1>Flight Guesser</h1>
           </div>
           <div class="tech-container">
@@ -161,17 +105,23 @@
             an aircraft in the real world, where the objective is to guess where
             the aircraft has come from and/or where it is heading. Points are
             awarded based on proximity to the correct locations, based on data
-            sourced from the Flight Radar API.
+            sourced from Flight Radar. The game has multiplayer functionality
+            where players can create a multiplayer lobby and share a code for
+            others to join. While in a multiplayer lobby, a real-time
+            leaderboard will be available.
           </p>
           <p>
-            The game has multiplayer functionality; players can create a
-            multiplayer lobby and share a code for others to join. While in a
-            multiplayer lobby, a real-time leaderboard will be available.
+            The interface for this project is a single-page application written
+            in React and hosted from an AWS S3 bucket. I decided to try out
+            Zustand to manage the application state in this project, which I
+            found to be a more ergonomic approach in this situation.
           </p>
           <p>
-            The front-end of this project is hosted from an S3 bucket behind a
-            CloudFront distribution, and the back-end is driven by Lambda
-            functions and API Gateway.
+            To keep server costs minimal, the APIs use AWS Lambda to execute
+            code. The APIs are written in Python and are exposed through an API
+            Gateway. The multiplayer API makes use of WebSocket connections to
+            allow for real-time scoreboard updates to be pushed from the server
+            to the client.
           </p>
           <div class="iframe-container">
             <div class="iframe-placeholder">
@@ -190,6 +140,65 @@
             <span>Back To Top</span>
           </button>
 
+          <div id="section-3" class="title">
+            <p>Section III</p>
+            <h1>Exeter Cycling Club</h1>
+          </div>
+          <div class="tech-container">
+            <img class="tech-icon" src="images/yew.svg" />
+            <img class="tech-icon" src="images/rust.svg" />
+            <img class="tech-icon" src="images/aws.svg" />
+          </div>
+          <p>
+            This project is a prototype website for my local road cycling club
+            which is not currently in use. As well as providing access to
+            general information about the club, the application allows
+            administrators to select a route for the week which will be
+            displayed on the website and sent via email to the mailing list.
+          </p>
+          <p>
+            Authentication is handled via Strava's OAuth2 implementation, where
+            only administrators' Strava accounts have permission to set and
+            update the route. Once authenticated, additional menus become
+            available which will display all of the user's Strava routes and
+            allow them to select one. A corresponding title and message can be
+            provided, which are displayed on both the website and the email
+            notifications. Club members can indicate whether they will be
+            attending the ride using buttons in the email.
+          </p>
+          <p>
+            Since search-engine-optimization is important for this particular
+            project, the user interface is server-side-rendered. I decided to
+            try out Yew for this project, which is sort of like a React
+            equivalent for Rust which compiles to WebAssembly. By wrapping the
+            server-side rendering logic in an Axum HTTP server, I was able to
+            get it to run inside of an AWS Lambda function. This architecture
+            allows for reasonably fast page load times while keeping server
+            costs minimal.
+          </p>
+          <p>
+            The APIs for the application are written in Rust and executed using
+            AWS Lambda. The mailing list is stored in DynamoDB, which is a
+            decision made primarily to minimize server costs. Other data items
+            such as the currently selected route are stored as SSM parameters so
+            that they may be updated without needing to rebuild the back-end.
+          </p>
+          <div class="iframe-container">
+            <div class="iframe-placeholder">
+              <img src="images/placeholders/iframe-preview-1.webp" />
+            </div>
+            <iframe
+              title="Exeter Cycling Club"
+              data-src="https://ecc.oliver-bilbie.co.uk"
+              id="lazy-iframe-1"
+              class="responsive-iframe"
+            ></iframe>
+          </div>
+          <button class="space-btn centred goto-section-1 extra-margin">
+            <img src="images/rocket.webp" />
+            <span>Back To Top</span>
+          </button>
+
           <div id="section-4" class="title">
             <p>Section IV</p>
             <h1>Advent of Code</h1>
@@ -198,19 +207,21 @@
             <img class="tech-icon" src="images/rust.svg" />
           </div>
           <p>
-            I have written solutions to some of
+            For the last few years I have attempted
             <a href="https://adventofcode.com/about"
               >Eric Wastl's Advent of Code</a
             >
-            programming challenges.
+            programming challenges, inevitably falling off once my festive
+            responsibilities start consuming too much time!
           </p>
           <p>
-            I have built a simple web application to make it easier to run my
-            solutions. The programs have been compiled into WebAssembly and will
-            run directly in the browser, which runs on all platforms and
-            provides near-native performance. The application uses a web worker
-            pattern to allow programs to be safely terminated early, as well as
-            to not block the main thread while they are running.
+            In order to make this more visual and interactive, I have hacked
+            together a web application to make it easier to run my solutions. My
+            solutions have been compiled into WebAssembly and will run directly
+            in the browser, which works on all platforms and provides
+            near-native performance. The application uses a web worker pattern
+            to allow programs to be safely terminated early, as well as to not
+            block the main thread while they are running.
           </p>
           <p>
             The front-end of this project is hosted from an S3 bucket behind a
@@ -251,9 +262,11 @@
             of the 1000 most common words are included.
           </p>
           <p>
-            The front-end of this project is hosted from an S3 bucket behind a
-            CloudFront distribution. All logic is handled in the client so there
-            is no need for any back-end services.
+            This project was a first attempt to familiarize myself with Yew
+            before taking on something bigger. The front-end of this project is
+            hosted from an S3 bucket behind a CloudFront distribution. All logic
+            is handled in the client so there is no need for any back-end
+            services.
           </p>
           <div class="iframe-container">
             <div class="iframe-placeholder">
@@ -300,9 +313,9 @@
             one second, although this can be longer for slow connections.
           </p>
           <p>
-            The front-end of this project is hosted from an S3 bucket behind a
-            CloudFront distribution, and the back-end is driven by Lambda
-            functions and API Gateway.
+            This project was a proof of concept for using WebSockets with AWS
+            Lambda functions through an API Gateway, which I later used in my
+            Flight Guesser project.
           </p>
           <div class="iframe-container">
             <div class="iframe-placeholder">
@@ -328,11 +341,11 @@
           <div id="contact-form">
             <p>Email address</p>
             <input
-                id="email-input"
-                class="form-input"
-                placeholder="Your email address"
-                type="text"
-            ></input>
+              id="email-input"
+              class="form-input"
+              placeholder="Your email address"
+              type="text"
+            />
 
             <p>Message</p>
             <textarea
