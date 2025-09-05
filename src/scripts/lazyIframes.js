@@ -5,7 +5,7 @@ const loadedIframes = [];
 export const handleIframeVisibility = debounce(_handleIframeVisibility);
 
 function _handleIframeVisibility(scrollTop, clientSize, elementPositions) {
-  for (let i = 1; i <= 5; i++) {
+  for (let i = 1; i <= 6; i++) {
     const iframe = document.querySelector(`#lazy-iframe-${i}`);
     if (!iframe) continue;
 
