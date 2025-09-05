@@ -25,7 +25,7 @@ build-client:
 	@rm -rf ./build
 	@mkdir -p ./build
 	@cp -r ./src/* ./build
--	@sed -i 's|%CONTACT_API%|$(shell cd terraform && terraform output -raw contact_api)|g' ./build/index.html
+	@sed -i 's|%CONTACT_API%|$(shell cd terraform && terraform output -raw contact_api)|g' ./build/scripts/endpoints.js
 
 	@echo "[INFO] Minifying client files"
 	@find build -name "*.js" -type f | while read file; do \

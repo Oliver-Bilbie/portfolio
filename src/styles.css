@@ -284,7 +284,7 @@ h3 {
   margin-top: -2rem;
 }
 
-.contact-form {
+#contact-form {
   margin-top: 8rem;
   margin-bottom: 8rem;
 }
@@ -333,4 +333,102 @@ h3 {
   width: 100%;
   height: 100%;
   object-fit: cover;
+}
+
+.success-text {
+  animation: fade-from-green 10s;
+}
+
+.error-text {
+  animation: fade-from-red 10s;
+}
+
+@keyframes fade-from-green {
+  0% {
+    color: green;
+  }
+  100% {
+    color: white;
+  }
+}
+
+@keyframes fade-from-red {
+  0% {
+    color: red;
+  }
+  100% {
+    color: white;
+  }
+}
+
+.loading-spinner {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 40rem;
+  overflow: visible;
+  position: relative;
+  animation: loading-spinner-fade-in 1.5s;
+  margin-top: 15rem;
+}
+
+.loading-spinner-container {
+  animation: loading-spinner-float 2s ease-in-out infinite;
+  height: 100%;
+  width: 100%;
+}
+
+.loading-spinner-image {
+  animation: loading-spinner-drift 5s ease-in-out infinite;
+  max-width: 100%;
+  max-height: 100%;
+}
+
+@keyframes loading-spinner-float {
+  0% {
+    transform: translateY(5%);
+  }
+  50% {
+    transform: translateY(-5%);
+  }
+  100% {
+    transform: translateY(5%);
+  }
+}
+
+@keyframes loading-spinner-drift {
+  0% {
+    transform: translateX(3%);
+  }
+  50% {
+    transform: translateX(-3%);
+  }
+  100% {
+    transform: translateX(3%);
+  }
+}
+
+@keyframes loading-spinner-fade-in {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 100;
+  }
+}
+
+.text-container {
+  background-color: rgba(115, 83, 186, 0.5);
+  color: white;
+  font-size: 1.5rem;
+  font-weight: bold;
+  padding: 20px 30px;
+  border: none;
+  border-radius: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  cursor: pointer;
+  transition: all 0.3s ease;
 }
