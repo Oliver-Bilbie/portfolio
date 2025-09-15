@@ -64,6 +64,14 @@ window.addEventListener("load", () => {
     });
   }
 
+  document.querySelectorAll(".goto-top").forEach((element) => {
+    element.addEventListener("click", () => {
+      document
+        .getElementById("scroll-container")
+        .scrollTo({ top: 0, behavior: "smooth" });
+    });
+  });
+
   // Handle contact form button
   document.getElementById("send-button").addEventListener("click", async () => {
     const form_data = readContactForm();
