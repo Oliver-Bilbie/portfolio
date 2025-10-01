@@ -94,7 +94,9 @@ window.addEventListener("load", () => {
     .getElementById("scroll-depth-ctrl")
     .addEventListener("input", (event) => {
       rotateX = event.target.value;
-      let scrollTop = document.getElementById("scroll-container").scrollTop;
-      onScrollDepthAdjust(scrollTop, rotateX);
+      onScrollDepthAdjust(
+        document.getElementById("scroll-container").scrollTop,
+        rotateX,
+      );
     });
 });
