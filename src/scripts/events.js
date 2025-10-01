@@ -4,9 +4,10 @@ import {
   fadeOutWelcomeText,
 } from "./dom.js";
 import { handleIframeVisibility } from "./lazyIframes.js";
-import { throttle } from "./utils.js";
+import { debounce, throttle } from "./utils.js";
 
 export const onResize = throttle(_onResize, 100);
+export const onScrollDepthAdjust = debounce(scrollContent, 10);
 
 function _onResize(clientSize, elementPositions) {
   let scrollTop = document.getElementById("scroll-container").scrollTop;
@@ -17,7 +18,7 @@ function _onResize(clientSize, elementPositions) {
 
 function scrollContent(scrollOffset, rotateX) {
   const crawl = document.getElementById("crawl");
-  crawl.style.transform = `rotateX(${rotateX}deg) translateY(${-scrollOffset}px)`;
+  crawl.style.transform = `rotateX(${rotateX}deg) translateY(${-scrollOffset}px) translateZ(${-1000 * Math.cos(rotateX / 35)}px)`;
 }
 
 function scrollBackground(scrollOffset, contentHeight, clientSize) {
