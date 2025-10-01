@@ -7,12 +7,12 @@ import {
   handleContactResult,
   handleContactLoading,
 } from "./dom.js";
-import { onResize, onScroll } from "./events.js";
+import { onResize, onScroll, onScrollDepthAdjust } from "./events.js";
 import { generateStars } from "./utils.js";
 import { WelcomeState } from "./welcomeState.js";
 
 window.addEventListener("load", () => {
-  const rotateX = 45;
+  let rotateX = 45;
 
   let clientSize = getClientSize();
   generateStars(clientSize);
@@ -88,4 +88,13 @@ window.addEventListener("load", () => {
   const depth = parseInt(params.get("depth") || "0", 10);
   const recursive_iframe = document.getElementById("lazy-iframe-4");
   recursive_iframe.dataset.src = `${recursive_iframe.dataset.src}?depth=${depth + 1}`;
+
+  // Handle scroll depth slider
+  document
+    .getElementById("scroll-depth-ctrl")
+    .addEventListener("input", (event) => {
+      rotateX = event.target.value;
+      let scrollTop = document.getElementById("scroll-container").scrollTop;
+      onScrollDepthAdjust(scrollTop, rotateX);
+    });
 });
