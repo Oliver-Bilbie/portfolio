@@ -18,7 +18,8 @@ function _onResize(clientSize, elementPositions) {
 
 function scrollContent(scrollOffset, rotateX) {
   const crawl = document.getElementById("crawl");
-  crawl.style.transform = `rotateX(${rotateX}deg) translateY(${-scrollOffset}px) translateZ(${-1000 * Math.cos(rotateX / 35)}px)`;
+  let translateZ = rotateX > 30 ? 0 : 800 * Math.cos((rotateX / 60) * Math.PI);
+  crawl.style.transform = `rotateX(${rotateX}deg) translate3d(0, ${-scrollOffset}px, ${-translateZ}px)`;
 }
 
 function scrollBackground(scrollOffset, contentHeight, clientSize) {
