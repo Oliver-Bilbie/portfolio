@@ -47,7 +47,7 @@ async function captureScreenshots() {
 
   for (const iframe of iframes) {
     console.log(`Capturing ${iframe.name}...`);
-    await page.setViewport({ width: 1600, height: 900 });
+    await page.setViewport({ width: 1280, height: 720 });
 
     await page.goto(iframe.url, { waitUntil: "networkidle2" });
 
