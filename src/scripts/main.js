@@ -11,8 +11,10 @@ import { onResize, onScroll, onScrollDepthAdjust } from "./events.js";
 import { generateStars } from "./utils.js";
 import { WelcomeState } from "./welcomeState.js";
 
+const isFirefox = typeof InstallTrigger !== "undefined";
+
 window.addEventListener("load", () => {
-  let rotateX = 45;
+  let rotateX = isFirefox ? 3 : 45;
 
   let clientSize = getClientSize();
   generateStars(clientSize);
@@ -99,4 +101,12 @@ window.addEventListener("load", () => {
         rotateX,
       );
     });
+
+  // Firefox compatibility
+  if (isFirefox) {
+    document.getElementById("scroll-depth-ctrl").max = "3";
+    document.getElementById("scroll-depth-ctrl").value = "3";
+  } else {
+    document.getElementById("firefox-warning").remove();
+  }
 });
