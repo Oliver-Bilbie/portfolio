@@ -74,7 +74,7 @@ h3 {
 #crawl {
   position: absolute;
   width: 100vw;
-  top: 100vh;
+  top: 150vh;
   transform-origin: 50vw 15vh;
 }
 
@@ -482,4 +482,8 @@ h3 {
   height: 3rem;
   background: #efc3f5;
   cursor: pointer;
+}
+
+.warning-text {
+  color: #bd6328;
 }
