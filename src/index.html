@@ -48,9 +48,9 @@
           </div>
           <p>
             Hi! My name is Ollie and I am a software engineer living in Austin,
-            Texas. I specialize in web development and I am particularly
-            interested in writing performant code and architecting efficient
-            applications.
+            Texas. I am experienced in systems programming as well as web
+            development, and enjoy exploring the limits of what computers can
+            do.
           </p>
           <p>
             This page is a showcase of some of the projects I have worked on for
@@ -65,7 +65,7 @@
           <p id="firefox-warning" class="warning-text">
             Due to technical limitations, some features of this website are
             unavailable on Firefox. Please use a Chromium-based browser for the
-            full experience.
+            best experience.
           </p>
           <p>
             If you wish to adjust the strength of the 3D scroll effect then you
@@ -92,20 +92,20 @@
               <span>Cycling</span>
             </button>
             <button class="space-btn goto-section-4">
+              <img src="/images/satellite.webp" />
+              <span>Satellite</span>
+            </button>
+            <button class="space-btn goto-section-5">
               <img src="/images/aoc.webp" />
               <span>AoC</span>
             </button>
-            <button class="space-btn goto-section-5">
+            <button class="space-btn goto-section-6">
               <img src="/images/portfolio.webp" />
               <span>Portfolio</span>
             </button>
-            <button class="space-btn goto-section-6">
+            <button class="space-btn goto-section-7">
               <img src="/images/words.webp" />
               <span>Words</span>
-            </button>
-            <button class="space-btn goto-section-7">
-              <img src="/images/timer.webp" />
-              <span>Timer</span>
             </button>
             <button class="space-btn goto-section-8">
               <img src="/images/contact.webp" />
@@ -261,27 +261,103 @@
 
           <div id="section-4" class="title">
             <p>Section IV</p>
+            <h1>Ground Station</h1>
+          </div>
+          <div class="tech-container">
+            <img class="tech-icon" src="/images/cpp.svg" />
+          </div>
+          <p>
+            This project was inspired by Starlink. I built it as a way to
+            explore lower-level networking with UDP and to simulate what
+            reliable communication might look like in a real satellite
+            constellation.
+          </p>
+          <p>
+            The setup consists of two programs: one representing satellites and
+            one representing a ground station. Satellites periodically broadcast
+            their position (a randomly generated low-Earth orbit updated with
+            Runge-Kutta integration). These packets pass through a “Space” layer
+            that randomly drops or delays them to mimic real-world conditions.
+          </p>
+          <p>
+            The ground station listens for incoming packets, reorders them
+            correctly, and prints them in sequence. When it detects missing
+            packets, it sends NACKs back to the satellite, which then
+            retransmits the requested packet. Of course, those NACKs can also
+            get lost or delayed — just to keep things interesting.
+          </p>
+          <p>
+            To keep everything responsive, the system uses multiple long-running
+            threads (satellites broadcasting, ground station listening,
+            background retry logic, etc.). I encapsulated the threads using RAII
+            objects with proper cleanup, and used mutexes + condition variables
+            to safely coordinate between them without race conditions.
+          </p>
+          <p>
+            The demo video shows a ground station (left) receiving data from
+            three satellites (right).
+          </p>
+          <div class="video-container">
+            <video width="100%" height="100%" autoplay loop muted>
+              <source
+                src="https://oliver-bilbie-assets.s3.eu-west-1.amazonaws.com/ground-station-demo.webm"
+                type="video/webm"
+              />
+              Your browser does not support the HTML video tag.
+            </video>
+          </div>
+          <div class="showcase-button-grid centred">
+            <a
+              href="https://oliver-bilbie-assets.s3.eu-west-1.amazonaws.com/ground-station-demo.webm"
+              target="_blank"
+            >
+              <button class="space-btn centred extra-margin">
+                <img src="/images/satellite.webp" />
+                <span>Demo Video</span>
+              </button>
+            </a>
+            <a
+              href="https://github.com/Oliver-Bilbie/ground-station"
+              target="_blank"
+            >
+              <button class="space-btn centred extra-margin">
+                <img src="/images/github-white.svg" />
+                <span>Source Code</span>
+              </button>
+            </a>
+            <button class="space-btn centred goto-section-1 extra-margin">
+              <img src="/images/rocket.webp" />
+              <span>Back To Top</span>
+            </button>
+          </div>
+
+          <div id="section-5" class="title">
+            <p>Section V</p>
             <h1>Advent of Code</h1>
           </div>
           <div class="tech-container">
             <img class="tech-icon" src="/images/rust.svg" />
           </div>
           <p>
-            For the last few years I have attempted
+            I have learned a lot about programming thanks to
             <a href="https://adventofcode.com/about" target="_blank"
               >Eric Wastl's Advent of Code</a
             >
-            programming challenges, inevitably falling off once my festive
-            responsibilities start consuming too much time!
+            programming challenges, which are annual collections of increasingly
+            difficult puzzles that test knowledge of algorithms as well as
+            mathematics.
           </p>
           <p>
-            In order to make this more visual and interactive, I have hacked
-            together a web application to make it easier to run my solutions. My
-            solutions have been compiled into WebAssembly and will run directly
-            in the browser, which works on all platforms and provides
-            near-native performance. The application uses a web worker pattern
-            to allow programs to be safely terminated early, as well as to not
-            block the main thread while they are running.
+            In order to make my solutions more visual and interactive, I have
+            hacked together a web application to make it easier to run my them.
+            The solutions written in Rust have been compiled into WebAssembly
+            and will run directly in the browser, which works on all platforms
+            and provides near-native performance. Similarly, solutions written
+            in Go are compiled to WASM using a lightweight Go runtime called
+            TinyGo, and Python solutions are interpreted in the browser using a
+            WASM-based interpreter called Pyodide. The application uses a web
+            worker pattern to allow programs to be safely terminated early, as
+            well as to not block the main thread while they are running.
           </p>
           <p>
             The front-end of this project is hosted from an S3 bucket behind a
@@ -321,8 +397,8 @@
             </button>
           </div>
 
-          <div id="section-5" class="title">
-            <p>Section V</p>
+          <div id="section-6" class="title">
+            <p>Section VI</p>
             <h1>Portfolio</h1>
           </div>
           <div class="tech-container">
@@ -376,8 +452,8 @@
             </button>
           </div>
 
-          <div id="section-6" class="title">
-            <p>Section VI</p>
+          <div id="section-7" class="title">
+            <p>Section VII</p>
             <h1>Learn Common Words</h1>
           </div>
           <div class="tech-container">
@@ -420,72 +496,6 @@
             </a>
             <a
               href="https://github.com/Oliver-Bilbie/learn-common-words"
-              target="_blank"
-            >
-              <button class="space-btn centred extra-margin">
-                <img src="/images/github-white.svg" />
-                <span>Source Code</span>
-              </button>
-            </a>
-            <button class="space-btn centred goto-section-1 extra-margin">
-              <img src="/images/rocket.webp" />
-              <span>Back To Top</span>
-            </button>
-          </div>
-
-          <div id="section-7" class="title">
-            <p>Section VII</p>
-            <h1>Elapsed Time</h1>
-          </div>
-          <div class="tech-container">
-            <img class="tech-icon" src="/images/javascript.svg" />
-            <img class="tech-icon" src="/images/python.svg" />
-            <img class="tech-icon" src="/images/aws.svg" />
-          </div>
-          <p>
-            The aim of this project is to synchronize a timer between a server
-            and all of its connected clients whilst using a minimal number of
-            requests.
-          </p>
-          <p>
-            The implementation is driven by websockets which are automatically
-            connected when a client is loaded. On connection, the websocket will
-            push the current elapsed time to the client. The client will use its
-            system clock to update the displayed value based on this offset.
-          </p>
-          <p>
-            Clicking the button will send a reset request to the server, which
-            will trigger the server to push a zero offset value to all connected
-            clients. Since the websockets will time-out and re-connect every
-            five minutes, the displayed time should not drift significantly.
-            Displayed times are generally within a tolerance of approximately
-            one second, although this can be longer for slow connections.
-          </p>
-          <p>
-            This project was a proof of concept for using WebSockets with AWS
-            Lambda functions through an API Gateway, which I later used in my
-            Flight Guesser project.
-          </p>
-          <div class="iframe-container">
-            <div class="iframe-placeholder">
-              <img src="/images/placeholders/iframe-preview-timer.webp" />
-            </div>
-            <iframe
-              title="Elapsed Time"
-              data-src="https://timer.oliver-bilbie.co.uk"
-              id="lazy-iframe-6"
-              class="responsive-iframe"
-            ></iframe>
-          </div>
-          <div class="showcase-button-grid centred">
-            <a href="https://timer.oliver-bilbie.co.uk" target="_blank">
-              <button class="space-btn centred extra-margin">
-                <img src="/images/timer.webp" />
-                <span>Visit Page</span>
-              </button>
-            </a>
-            <a
-              href="https://github.com/Oliver-Bilbie/elapsed-time"
               target="_blank"
             >
               <button class="space-btn centred extra-margin">

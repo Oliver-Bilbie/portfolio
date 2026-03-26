@@ -8,13 +8,18 @@ body {
 
 iframe,
 .iframe-placeholder {
+  min-height: 800px;
+}
+
+iframe,
+.iframe-placeholder,
+.video-container {
   pointer-events: all;
   overflow: hidden;
   box-shadow: 0 0 1rem #8f75c7;
   width: 90vw;
   max-width: 1600px;
   aspect-ratio: 16 / 9;
-  min-height: 800px;
   border: none;
   display: block;
   margin: 0 auto;
@@ -314,12 +319,12 @@ h3 {
   resize: none;
 }
 
-.iframe-container {
+.iframe-container,
+.video-container {
   position: relative;
   width: 90vw;
   max-width: 1600px;
   aspect-ratio: 16 / 9;
-  min-height: 800px;
   margin: 0 auto;
 }
 

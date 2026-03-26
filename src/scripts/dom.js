@@ -53,7 +53,7 @@ export function getElementPositions(clientSize) {
     }
 
     // Find iframe positions
-    for (let i = 1; i <= 6; i++) {
+    for (let i = 1; i <= 5; i++) {
       let element = container.querySelector(`#lazy-iframe-${i}`).parentElement;
       positions[`iframe-${i}`] = {
         top: element.offsetTop,
