@@ -88,7 +88,7 @@ window.addEventListener("load", () => {
   // Handle recursive iframes
   const params = new URLSearchParams(window.location.search);
   const depth = parseInt(params.get("depth") || "0", 10);
-  const recursive_iframe = document.getElementById("lazy-iframe-4");
+  const recursive_iframe = document.getElementById("lazy-iframe-5");
   recursive_iframe.dataset.src = `${recursive_iframe.dataset.src}?depth=${depth + 1}`;
 
   // Handle scroll depth slider

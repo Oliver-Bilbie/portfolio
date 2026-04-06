@@ -84,16 +84,16 @@
 
           <div class="contents-button-grid centred">
             <button class="space-btn goto-section-2">
+              <img src="/images/satellite.webp" />
+              <span>Satellites</span>
+            </button>
+            <button class="space-btn goto-section-3">
               <img src="/images/flights.webp" />
               <span>Flights</span>
             </button>
-            <button class="space-btn goto-section-3">
+            <button class="space-btn goto-section-4">
               <img src="/images/cycling.webp" />
               <span>Cycling</span>
-            </button>
-            <button class="space-btn goto-section-4">
-              <img src="/images/satellite.webp" />
-              <span>Satellite</span>
             </button>
             <button class="space-btn goto-section-5">
               <img src="/images/aoc.webp" />
@@ -119,6 +119,78 @@
 
           <div id="section-2" class="title">
             <p>Section II</p>
+            <h1>Satellites</h1>
+          </div>
+          <div class="tech-container">
+            <img class="tech-icon" src="/images/cpp.svg" />
+          </div>
+          <p>
+            This project was inspired by Starlink. I built it as a way to
+            explore lower-level networking with UDP and to simulate what
+            reliable communication might look like in a real satellite
+            constellation.
+          </p>
+          <p>
+            The setup consists of two programs: one representing satellites and
+            one representing a ground station. Satellites periodically broadcast
+            their position (a randomly generated low-Earth orbit updated with
+            Runge-Kutta integration). These packets pass through a “Space” layer
+            that randomly drops or delays them to mimic real-world conditions.
+          </p>
+          <p>
+            The ground station listens for incoming packets, reorders them
+            correctly, and prints them in sequence. When it detects missing
+            packets, it sends NACKs back to the satellite, which then
+            retransmits the requested packet. Of course, those NACKs can also
+            get lost or delayed — just to keep things interesting.
+          </p>
+          <p>
+            To keep everything responsive, the system uses multiple long-running
+            threads (satellites broadcasting, ground station listening,
+            background retry logic, etc.). I encapsulated the threads using RAII
+            objects with proper cleanup, and used mutexes + condition variables
+            to safely coordinate between them without race conditions.
+          </p>
+          <p>
+            The project also includes a dashboard for visualizing the data in
+            real-time. This is driven from a WebSocket server running on the
+            ground station.
+          </p>
+          <div class="iframe-container">
+            <div class="iframe-placeholder">
+              <img src="/images/placeholders/iframe-preview-satellites.webp" />
+            </div>
+            <iframe
+              title="Satellites"
+              data-src="https://satellites.oliver-bilbie.co.uk"
+              id="lazy-iframe-1"
+              class="responsive-iframe"
+            ></iframe>
+          </div>
+          <div class="showcase-button-grid centred">
+            <a href="https://satellites.oliver-bilbie.co.uk" target="_blank">
+              <button class="space-btn centred extra-margin">
+                <img src="/images/satellite.webp" />
+                <span>Visit Page</span>
+              </button>
+            </a>
+            <a
+              href="https://github.com/Oliver-Bilbie/ground-station"
+              target="_blank"
+            >
+              <button class="space-btn centred extra-margin">
+                <img src="/images/github-white.svg" />
+                <span>Source Code</span>
+              </button>
+            </a>
+            <button class="space-btn centred goto-section-1 extra-margin">
+              <img src="/images/rocket.webp" />
+              <span>Back To Top</span>
+            </button>
+          </div>
+
+          <div id="section-3" class="title">
+            <p>Section III</p>
             <h1>Flight Guesser</h1>
           </div>
           <div class="tech-container">
@@ -157,7 +229,7 @@
               title="Flight Guesser"
               data-src="https://flights.oliver-bilbie.co.uk"
               allow="geolocation 'self' https://flights.oliver-bilbie.co.uk"
-              id="lazy-iframe-1"
+              id="lazy-iframe-2"
               class="responsive-iframe"
             ></iframe>
           </div>
@@ -183,8 +255,8 @@
             </button>
           </div>
 
-          <div id="section-3" class="title">
-            <p>Section III</p>
+          <div id="section-4" class="title">
+            <p>Section IV</p>
             <h1>Exeter Cycling Club</h1>
           </div>
           <div class="tech-container">
@@ -233,7 +305,7 @@
             <iframe
               title="Exeter Cycling Club"
               data-src="https://ecc.oliver-bilbie.co.uk"
-              id="lazy-iframe-2"
+              id="lazy-iframe-3"
               class="responsive-iframe"
             ></iframe>
           </div>
@@ -246,78 +318,6 @@
             </a>
             <a
               href="https://github.com/Oliver-Bilbie/exeter-cycling-club"
-              target="_blank"
-            >
-              <button class="space-btn centred extra-margin">
-                <img src="/images/github-white.svg" />
-                <span>Source Code</span>
-              </button>
-            </a>
-            <button class="space-btn centred goto-section-1 extra-margin">
-              <img src="/images/rocket.webp" />
-              <span>Back To Top</span>
-            </button>
-          </div>
-
-          <div id="section-4" class="title">
-            <p>Section IV</p>
-            <h1>Ground Station</h1>
-          </div>
-          <div class="tech-container">
-            <img class="tech-icon" src="/images/cpp.svg" />
-          </div>
-          <p>
-            This project was inspired by Starlink. I built it as a way to
-            explore lower-level networking with UDP and to simulate what
-            reliable communication might look like in a real satellite
-            constellation.
-          </p>
-          <p>
-            The setup consists of two programs: one representing satellites and
-            one representing a ground station. Satellites periodically broadcast
-            their position (a randomly generated low-Earth orbit updated with
-            Runge-Kutta integration). These packets pass through a “Space” layer
-            that randomly drops or delays them to mimic real-world conditions.
-          </p>
-          <p>
-            The ground station listens for incoming packets, reorders them
-            correctly, and prints them in sequence. When it detects missing
-            packets, it sends NACKs back to the satellite, which then
-            retransmits the requested packet. Of course, those NACKs can also
-            get lost or delayed — just to keep things interesting.
-          </p>
-          <p>
-            To keep everything responsive, the system uses multiple long-running
-            threads (satellites broadcasting, ground station listening,
-            background retry logic, etc.). I encapsulated the threads using RAII
-            objects with proper cleanup, and used mutexes + condition variables
-            to safely coordinate between them without race conditions.
-          </p>
-          <p>
-            The demo video shows a ground station (left) receiving data from
-            three satellites (right).
-          </p>
-          <div class="video-container">
-            <video width="100%" height="100%" autoplay loop muted>
-              <source
-                src="https://oliver-bilbie-assets.s3.eu-west-1.amazonaws.com/ground-station-demo.webm"
-                type="video/webm"
-              />
-              Your browser does not support the HTML video tag.
-            </video>
-          </div>
-          <div class="showcase-button-grid centred">
-            <a
-              href="https://oliver-bilbie-assets.s3.eu-west-1.amazonaws.com/ground-station-demo.webm"
-              target="_blank"
-            >
-              <button class="space-btn centred extra-margin">
-                <img src="/images/satellite.webp" />
-                <span>Demo Video</span>
-              </button>
-            </a>
-            <a
-              href="https://github.com/Oliver-Bilbie/ground-station"
               target="_blank"
             >
               <button class="space-btn centred extra-margin">
@@ -371,7 +371,7 @@
             <iframe
               title="Advent of Code"
               data-src="https://aoc.oliver-bilbie.co.uk"
-              id="lazy-iframe-3"
+              id="lazy-iframe-4"
               class="responsive-iframe"
             ></iframe>
           </div>
@@ -428,7 +428,7 @@
             <iframe
               title="Portfolio"
               data-src="https://portfolio.oliver-bilbie.co.uk"
-              id="lazy-iframe-4"
+              id="lazy-iframe-5"
               class="responsive-iframe"
             ></iframe>
           </div>
@@ -483,7 +483,7 @@
             <iframe
               title="Learn Common Words"
               data-src="https://words.oliver-bilbie.co.uk"
-              id="lazy-iframe-5"
+              id="lazy-iframe-6"
               class="responsive-iframe"
             ></iframe>
           </div>
