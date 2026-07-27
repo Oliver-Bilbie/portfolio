@@ -13,15 +13,25 @@ export async function sendContactRequest(email, message) {
       },
     });
 
-    if (!response.ok) {
-      throw new Error(`HTTP error! Status: ${response.status}`);
+    let response_json;
+    try {
+      response_json = await response.json();
+    } catch {
+      response_json = null;
     }
 
-    let response_json = await response.json();
+    if (!response.ok) {
+      return {
+        is_success: false,
+        message:
+          response_json?.message ||
+          "Unable to send your message. Please try again later.",
+      };
+    }
 
     return {
       is_success: true,
-      message: response_json.message,
+      message: response_json?.message || "Message sent successfully",
     };
   } catch (err) {
     console.error("Failed to send contact request:", err);

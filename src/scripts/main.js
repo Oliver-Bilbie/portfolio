@@ -77,6 +77,9 @@ window.addEventListener("load", () => {
   // Handle contact form button
   document.getElementById("send-button").addEventListener("click", async () => {
     const form_data = readContactForm();
+    if (!form_data.email.trim() || !form_data.message.trim()) {
+      return;
+    }
     handleContactLoading();
     const response = await sendContactRequest(
       form_data.email,

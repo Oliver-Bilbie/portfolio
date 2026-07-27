@@ -349,7 +349,7 @@
           </p>
           <p>
             In order to make my solutions more visual and interactive, I have
-            hacked together a web application to make it easier to run my them.
+            hacked together a web application to make it easier to run them.
             The solutions written in Rust have been compiled into WebAssembly
             and will run directly in the browser, which works on all platforms
             and provides near-native performance. Similarly, solutions written
@@ -520,7 +520,8 @@
               id="email-input"
               class="form-input"
               placeholder="Your email address"
-              type="text"
+              type="email"
+              autocomplete="email"
             />
 
             <p>Message</p>
@@ -528,7 +529,6 @@
               id="message-input"
               class="form-input"
               placeholder="Type your message here"
-              type="text"
             ></textarea>
 
             <button id="send-button" class="space-btn centred extra-margin">
