@@ -26,12 +26,10 @@ function withVirtualContent(fn, ...args) {
 
   document.body.appendChild(clone);
 
-  let result;
   try {
-    result = fn(clone, ...args);
+    return fn(clone, ...args);
   } finally {
     document.body.removeChild(clone);
-    return result;
   }
 }
 
