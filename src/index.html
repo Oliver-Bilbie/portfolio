@@ -34,9 +34,12 @@
       <div id="star-container"></div>
 
       <div id="overlay">
-        <div id="welcome-text">
-          <h1 class="fade-in-0s">Hello World!</h1>
-          <h3 class="fade-in-3s">Scroll down...</h3>
+        <div id="welcome-text" aria-label="Hello World! Scroll down.">
+          <h1>
+            <span id="welcome-line-1"></span
+            ><span class="terminal-cursor" id="welcome-cursor"></span>
+          </h1>
+          <h3><span id="welcome-line-2"></span></h3>
         </div>
       </div>
 
@@ -349,12 +352,12 @@
           </p>
           <p>
             In order to make my solutions more visual and interactive, I have
-            hacked together a web application to make it easier to run them.
-            The solutions written in Rust have been compiled into WebAssembly
-            and will run directly in the browser, which works on all platforms
-            and provides near-native performance. Similarly, solutions written
-            in Go are compiled to WASM using a lightweight Go runtime called
-            TinyGo, and Python solutions are interpreted in the browser using a
+            hacked together a web application to make it easier to run them. The
+            solutions written in Rust have been compiled into WebAssembly and
+            will run directly in the browser, which works on all platforms and
+            provides near-native performance. Similarly, solutions written in Go
+            are compiled to WASM using a lightweight Go runtime called TinyGo,
+            and Python solutions are interpreted in the browser using a
             WASM-based interpreter called Pyodide. The application uses a web
             worker pattern to allow programs to be safely terminated early, as
             well as to not block the main thread while they are running.

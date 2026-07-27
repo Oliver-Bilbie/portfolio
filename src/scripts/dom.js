@@ -75,17 +75,44 @@ function fadeElement(element, fadeIn, timeSeconds) {
   element.style.opacity = fadeIn ? 1 : 0;
 }
 
+function sleep(ms) {
+  return new Promise((resolve) => setTimeout(resolve, ms));
+}
+
+async function typeText(element, text, charDelayMs) {
+  for (const char of text) {
+    element.textContent += char;
+    await sleep(charDelayMs);
+  }
+}
+
+async function runWelcomeTypewriter(welcomeState) {
+  const line1El = document.getElementById("welcome-line-1");
+  const line2El = document.getElementById("welcome-line-2");
+  const cursor = document.getElementById("welcome-cursor");
+  const line2Parent = line2El.parentElement;
+
+  await sleep(800);
+  await typeText(line1El, "Hello World!", 70);
+  await sleep(400);
+
+  line2Parent.appendChild(cursor);
+  await typeText(line2El, "Scroll down", 70);
+
+  cursor.classList.add("blink");
+  welcomeState.hasTyped = true;
+}
+
 export function fadeInWelcomeText(welcomeState) {
   if (!welcomeState.isVisible) {
-    const fadeIn0s = document.querySelector(".fade-in-0s");
-    fadeElement(fadeIn0s, true, 3);
+    const welcomeText = document.getElementById("welcome-text");
 
-    const fadeIn3s = document.querySelector(".fade-in-3s");
-    setTimeout(() => {
-      if (welcomeState.isVisible) {
-        fadeElement(fadeIn3s, true, 3);
-      }
-    }, 3000);
+    if (welcomeState.hasTyped) {
+      fadeElement(welcomeText, true, 1);
+    } else {
+      welcomeText.style.opacity = 1;
+      runWelcomeTypewriter(welcomeState);
+    }
 
     welcomeState.isVisible = true;
   }
@@ -93,12 +120,8 @@ export function fadeInWelcomeText(welcomeState) {
 
 export function fadeOutWelcomeText(welcomeState) {
   if (welcomeState.isVisible) {
-    const fadeIn0s = document.querySelector(".fade-in-0s");
-    fadeElement(fadeIn0s, false, 1);
-
-    const fadeIn3s = document.querySelector(".fade-in-3s");
-    fadeElement(fadeIn3s, false, 1);
-
+    const welcomeText = document.getElementById("welcome-text");
+    fadeElement(welcomeText, false, 1);
     welcomeState.isVisible = false;
   }
 }

@@ -159,16 +159,33 @@ h3 {
   font-size: 200%;
   text-align: center;
   overflow: hidden;
+  opacity: 0;
 }
 #welcome-text > * {
   margin: 10px;
-  opacity: 0;
 }
 #welcome-text > h1 {
   font-weight: normal;
 }
 #welcome-text > h3 {
   font-weight: lighter;
+}
+.terminal-cursor {
+  display: inline-block;
+  width: 0.55em;
+  height: 0.9em;
+  background-color: #efc3f5;
+  margin-left: 0.12em;
+  vertical-align: -0.05em;
+  box-shadow: 0 0 8px rgba(239, 195, 245, 0.6);
+}
+.terminal-cursor.blink {
+  animation: terminal-cursor-blink 1s step-end infinite;
+}
+@keyframes terminal-cursor-blink {
+  50% {
+    opacity: 0;
+  }
 }
 
 #message-input {
