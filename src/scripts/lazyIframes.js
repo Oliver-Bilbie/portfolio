@@ -1,6 +1,7 @@
 import { debounce } from "./utils.js";
 
 const loadedIframes = [];
+const unloadTimers = [];
 
 export const handleIframeVisibility = debounce(_handleIframeVisibility);
 
@@ -14,17 +15,22 @@ function _handleIframeVisibility(scrollTop, clientSize, elementPositions) {
       scrollTop <
         elementPositions[`iframe-${i}`].bottom + 3 * clientSize.height;
 
-    const isLoaded = loadedIframes[i] === true;
-
-    if (isVisible && !isLoaded) {
-      iframe.src = iframe.dataset.src;
+    if (isVisible) {
+      if (unloadTimers[i]) {
+        clearTimeout(unloadTimers[i]);
+        unloadTimers[i] = null;
+      }
+      if (!loadedIframes[i]) {
+        iframe.src = iframe.dataset.src;
+        loadedIframes[i] = true;
+      }
       iframe.classList.add("visible");
-      loadedIframes[i] = true;
-    } else if (!isVisible && isLoaded) {
+    } else if (loadedIframes[i]) {
       iframe.classList.remove("visible");
-      loadedIframes[i] = false;
-      setTimeout(() => {
+      unloadTimers[i] = setTimeout(() => {
         iframe.src = "";
+        loadedIframes[i] = false;
+        unloadTimers[i] = null;
       }, 750);
     }
   }
